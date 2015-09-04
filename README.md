@@ -3,7 +3,7 @@
 ### Pre Conditions
 This project requires an existing installation of map.apps to work. You need top copy the libs provided in the CD-Contents folder "m2repository" inside your local maven repository.
 
-### MVN Goals:
+### Maven Goals
 
 ##### Start jetty at http://localhost:8080 for local implementation.
 `mvn jetty:run`
@@ -20,7 +20,8 @@ This project requires an existing installation of map.apps to work. You need top
 ##### build compressed jar and app template and upload them to the remote map.apps installation
 `mvn clean install -P compress,upload`
 
-### URLs (after jetty:run goal)
+### URLs 
+The following urls are available after maven goal `jetty:run` was executed.
 
 ##### Base App
 http://localhost:8080
