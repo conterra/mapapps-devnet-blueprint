@@ -1,0 +1,32 @@
+{
+    "Bundle-SymbolicName": "sample_helloworld",
+    "Bundle-Version": "1.0.0-SNAPSHOT",
+    "Bundle-Name": "${bundleName}",
+    "Bundle-Description": "${bundleDescription}",
+    "Bundle-Vendor": "con terra GmbH",
+    "Bundle-Category": ["sample"],
+    "Bundle-Icon": {},
+    "Bundle-License": {},
+    "Components": [{
+            "name": "HelloTool",
+            "impl": "ct/tools/Tool",
+            "provides": "ct.tools.Tool",
+            "propertiesConstructor": true,
+            "properties": {
+                "id": "helloTool",
+                "title": "Click Me",
+                "toolRole": "toolset",
+                "clickHandler": "print"
+            },
+            "references": [{
+                    "name": "handlerScope",
+                    "providing": "sample_helloworld.Hello"
+                }]
+        }, {
+            "name": "Hello",
+            "provides": ["sample_helloworld.Hello"],
+            "properties": {
+                "-message": "${hello}"
+            }
+        }]
+}

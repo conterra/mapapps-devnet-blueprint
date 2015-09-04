@@ -11,7 +11,8 @@
             "windowmanager",
             "toolset",
             "toolrules",
-            "basemaptoggler"
+            "basemaptoggler",
+            "sample_helloworld"
         ],
         "skipBundles" : [],
         "require" : ["${app}.app"],
