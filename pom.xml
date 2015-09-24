@@ -367,7 +367,7 @@
                                 <replacement>
                                     <!-- remove bundleLocations from app.json -->
                                     <token>\s*"bundleLocations"\s*:\s*\[\s*"localbundles"\s*,\s*"bundles"\s*\]\s*,\s*</token>
-                                    <value></value>                                    
+                                    <value></value>
                                 </replacement>
                             </replacements>
                         </configuration>
@@ -402,7 +402,7 @@
                 <configuration>
                     <skipDeploy>true</skipDeploy>
                     <createApp>false</createApp>
-                </configuration>         
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
@@ -415,7 +415,7 @@
                     <stopKey>jetty-stop</stopKey>
                     <stopWait>60000</stopWait>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
-                    <reload>manual</reload>       
+                    <reload>manual</reload>
                     <webXml>${basedir}/src/test/webapp/WEB-INF/web.xml</webXml>
                     <useTestScope>true</useTestScope>
                     <webAppConfig>
@@ -470,7 +470,7 @@
         <!-- java lib versions -->
         <ct.jsregistry.version>1.0.6</ct.jsregistry.version>
         <ct.jsrt-test.version>1.0.4</ct.jsrt-test.version>
-        
+
         <!-- the default app, replaced in the *.html files to switch app names-->
         <default.app.name>sample</default.app.name>
         <client.config.initjs>$\{mapapps.remote.base\}/resources/jsregistry/root/ct/${mapapps.version}/dojo-init.js</client.config.initjs>
@@ -595,7 +595,7 @@
                 <plugins>
                     <plugin>
                         <groupId>de.conterra.jsregistry</groupId>
-                        <artifactId>ct-jsregistry-maven-plugin</artifactId>                
+                        <artifactId>ct-jsregistry-maven-plugin</artifactId>
                         <executions>
                             <execution>
                                 <id>calculate js dependencies</id>
@@ -730,8 +730,8 @@
         <profile>
             <id>less-v8-x64-mac</id>
             <activation>
-                <os> 
-                    <family>mac</family> 
+                <os>
+                    <family>mac</family>
                 </os>
             </activation>
             <build>
