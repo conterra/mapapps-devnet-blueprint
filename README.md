@@ -5,8 +5,13 @@ This project requires an existing installation of map.apps to work. You need top
 
 ### Maven Goals
 
-##### Start jetty at http://localhost:8080 for local implementation.
-`mvn jetty:run`
+##### 2 methods to start jetty at http://localhost:8080 for local implementation.
+1.
+`mvn jetty:run -Dmapapps.remote.base=%mapapps.remote.base%`
+
+2.
+Change the mapapps.remote.base in the build.properties file
+`mvn jetty:run -Denv=dev -Dlocal.configfile=%absolutepathtoprojectroot%/build.properties
 
 ##### build uncompressed jar and app template
 `mvn install`
