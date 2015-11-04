@@ -3,15 +3,22 @@
 ### Pre Conditions
 This project requires an existing installation of map.apps to work. You need top copy the libs provided in the CD-Contents folder "m2repository" inside your local maven repository.
 
+### Define the mapapps remote base
+Before you can run the project you have to define the mapapps.remote.base property in the pom.xml-file:
+`<mapapps.remote.base>http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%</mapapps.remote.base>`
+
+##### Other methods to to define the mapapps.remote.base property.
+1. Goal parameters
+`mvn install -Dmapapps.remote.base=http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%`
+
+2. Build properties
+Change the mapapps.remote.base in the build.properties file and run:
+`mvn install -Denv=dev -Dlocal.configfile=%ABSOLUTEPATHTOPROJECTROOT%/build.properties`
+
 ### Maven Goals
 
-##### Methods to start jetty at http://localhost:8080 for local implementation.
-1.
-`mvn jetty:run -Dmapapps.remote.base=%mapapps.remote.base%`
-
-2.
-Change the mapapps.remote.base in the build.properties file and run:
-`mvn jetty:run -Denv=dev -Dlocal.configfile=%absolutepathtoprojectroot%/build.properties`
+##### Start jetty at http://localhost:8080 for local implementation.
+`mvn jetty:run`
 
 ##### build uncompressed jar and app template
 `mvn install`
