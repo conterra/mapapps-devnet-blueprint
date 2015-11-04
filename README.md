@@ -10,8 +10,8 @@ This project requires an existing installation of map.apps to work. You need top
 `mvn jetty:run -Dmapapps.remote.base=%mapapps.remote.base%`
 
 2.
-Change the mapapps.remote.base in the build.properties file
-`mvn jetty:run -Denv=dev -Dlocal.configfile=%absolutepathtoprojectroot%/build.properties
+Change the mapapps.remote.base in the build.properties file and run:
+`mvn jetty:run -Denv=dev -Dlocal.configfile=%absolutepathtoprojectroot%/build.properties`
 
 ##### build uncompressed jar and app template
 `mvn install`
