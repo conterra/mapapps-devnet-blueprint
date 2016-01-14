@@ -7,6 +7,7 @@
     "Bundle-Category": ["sample"],
     "Bundle-Icon": {},
     "Bundle-License": {},
+    "Product-Name": "con terra Developer Network",
     "Components": [{
             "name": "HelloTool",
             "impl": "ct/tools/Tool",
