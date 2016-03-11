@@ -16,7 +16,7 @@ Before you can run the project you have to define the mapapps.remote.base proper
 
 ### Maven Goals
 
-##### Start jetty at http://localhost:8080 for local implementation.
+##### Start jetty at http://localhost:9090 for local implementation.
 `mvn jetty:run`
 
 ##### build uncompressed jar and app template
@@ -35,10 +35,10 @@ Before you can run the project you have to define the mapapps.remote.base proper
 The following urls are available after maven goal `jetty:run` was executed.
 
 ##### Base App
-http://localhost:8080
+http://localhost:9090
 
 ##### Embedded JS Registry
-http://localhost:8080/resources/jsregistry/root
+http://localhost:9090/resources/jsregistry/root
 
 ##### Open Tests in Browser
-http://localhost:8080/js/tests/runTests.html
+http://localhost:9090/js/tests/runTests.html
