@@ -218,6 +218,25 @@
         </testResources>
         <plugins>
             <plugin>
+                <groupId>com.soebes.maven.plugins</groupId>
+                <artifactId>echo-maven-plugin</artifactId>
+                <version>0.2</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>echo</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <echos>
+                        <echo>username is ${env.USER_NAME}</echo>
+                        <echo>pw is ${env.USER_PW}</echo>
+                    </echos>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
                 <version>2.11</version>
@@ -492,8 +511,8 @@
         
         <!-- required for release build -->
         <scm.push>false</scm.push>
-        <scm.username />
-        <scm.password />
+        <scm.username>${env.USER_NAME}</scm.username>
+        <scm.password>${env.USER_PW}</scm.password>
     </properties>
     <profiles>
         <profile>
