@@ -449,6 +449,8 @@
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <!-- for git release plugin-->
                     <arguments>-Dusername=${scm.username} -Dpassword=${scm.password}</arguments>
+                    <username>${scm.username}</username>
+                    <password>${scm.password}</password>
                 </configuration>
             </plugin>            
         </plugins>
