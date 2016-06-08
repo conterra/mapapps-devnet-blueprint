@@ -172,7 +172,16 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>1.10</version>
-                </plugin>   
+                </plugin> 
+                <plugin>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>de.jutzig</groupId>
+                    <artifactId>github-release-plugin</artifactId>
+                    <version>1.1.1</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <!-- set as source dir, so that you can edit it correctly in netbeans -->
@@ -432,18 +441,17 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.2</version>
+                <artifactId>maven-release-plugin</artifactId>                
                 <configuration>
                     <preparationGoals>clean</preparationGoals>
-                    <releaseProfiles>release,compress,write-release-versions,commit-release-versions,rollout</releaseProfiles>
+                    <releaseProfiles>compress,write-release-versions,commit-release-versions,github-release</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>            
         </plugins>
     </build>
     <scm>
-        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</developerConnection>
+        <connection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</connection>
         <url>https://github.com/conterra/mapapps-remote-project-blueprint</url>
     </scm>
     <distributionManagement>
@@ -589,6 +597,39 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>github-release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>de.jutzig</groupId>
+                        <artifactId>github-release-plugin</artifactId>                        
+                        <executions>
+                            <execution>
+                                <id>github-upload</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>release</goal>
+                                </goals>                                
+                                <configuration>
+                                    <tag>${project.version}</tag>
+                                    <!--<artifact>${project.build.directory}/${project.groupId}.${project.artifactId}-${project.version}.jar</artifact>-->
+                                    <!--<fileSets>
+                                        <fileSet>
+                                            <directory>${project.build.directory}</directory>
+                                            <includes>
+                                                <include>${project.artifactId}*.tar.gz</include>
+                                                <include>${project.artifactId}*.zip</include>
+                                            </includes>
+                                        </fileSet>
+                                    </fileSets>-->
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>            
         </profile>
         <profile>
             <id>write-release-versions</id>
