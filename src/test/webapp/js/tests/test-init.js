@@ -9,7 +9,7 @@ testConfig({
         {
             root: "@@mapapps.remote.base@@/resources/jsregistry/root",
             packages: [
-                "apprt@3.1.x"
+                "apprt@3.x"
             ]
         }
     ]
