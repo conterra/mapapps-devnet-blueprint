@@ -445,7 +445,7 @@
                 <configuration>
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <preparationGoals>clean</preparationGoals>
-                    <releaseProfiles>compress,write-release-versions,commit-release-versions,github-release</releaseProfiles>
+                    <releaseProfiles>compress,github-release</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>            
@@ -637,8 +637,8 @@
         <profile>
             <id>write-release-versions</id>
             <properties>
-                <replace.source.version>1.0.0-SNAPSHOT</replace.source.version>
-                <replace.target.version>${project.version}</replace.target.version>
+                <replace.source.version>${project.version}</replace.source.version>
+                <replace.target.version>${target.version}</replace.target.version>
             </properties>
             <build>
                 <plugins>
@@ -691,8 +691,7 @@
                             <execution>
                                 <phase>validate</phase>
                                 <goals>
-                                    <goal>checkin</goal>
-                                    <goal>update</goal>
+                                    <goal>checkin</goal>                                    
                                 </goals>
                                 <configuration>
                                     <message>[update-bundle-package-versions] from ${replace.source.version} to ${replace.target.version}</message>
