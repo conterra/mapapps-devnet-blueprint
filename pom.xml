@@ -216,26 +216,7 @@
                 <filtering>false</filtering>
             </testResource>
         </testResources>
-        <plugins>
-            <plugin>
-                <groupId>com.soebes.maven.plugins</groupId>
-                <artifactId>echo-maven-plugin</artifactId>
-                <version>0.2</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>echo</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <echos>
-                        <echo>username is ${env.USER_NAME}</echo>
-                        <echo>pw is ${env.USER_PW}</echo>
-                    </echos>
-                </configuration>
-            </plugin>
+        <plugins>            
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
