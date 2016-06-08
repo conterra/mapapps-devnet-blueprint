@@ -443,6 +443,7 @@
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>                
                 <configuration>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
                     <preparationGoals>clean</preparationGoals>
                     <releaseProfiles>compress,write-release-versions,commit-release-versions,github-release</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
@@ -452,8 +453,9 @@
     </build>
     <scm>
         <connection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</connection>
+        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</developerConnection>
         <url>https://github.com/conterra/mapapps-remote-project-blueprint</url>
-      <tag>HEAD</tag>
+        <tag>HEAD</tag>
   </scm>
     <distributionManagement>
         <repository>
