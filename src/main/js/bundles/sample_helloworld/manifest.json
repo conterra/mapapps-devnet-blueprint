@@ -1,6 +1,6 @@
 {
     "Bundle-SymbolicName": "sample_helloworld",
-    "Bundle-Version": "1.0.0-SNAPSHOT",
+    "Bundle-Version": "3.5.2",
     "Bundle-Name": "${bundleName}",
     "Bundle-Description": "${bundleDescription}",
     "Bundle-Vendor": "con terra GmbH",
