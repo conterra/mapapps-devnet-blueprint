@@ -7,7 +7,7 @@
     "Bundle-Category": ["sample"],
     "Bundle-Icon": {},
     "Bundle-License": {},
-    "Product-Name": "con terra Developer Network",
+    "Product-Name": "devnet-mapapps-remote-project-blueprint",
     "Components": [{
             "name": "HelloTool",
             "impl": "ct/tools/Tool",
