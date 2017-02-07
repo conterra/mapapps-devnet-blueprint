@@ -259,7 +259,7 @@
                     <!-- add here properties which are used in plugin configuration resolution -->
                     <properties>
                         <!-- deployment of map.apps installation -->
-                        <mapapps.remote.base />
+                        <mapapps.remote.base></mapapps.remote.base>
                     </properties>
                 </configuration>
             </plugin>
@@ -478,7 +478,7 @@
         <!-- dojo custom build parameters -->
         <js.build.outputPath>${project.build.directory}/${project.artifactId}/js</js.build.outputPath>
         <!-- mapapps.version -->
-        <mapapps.version>3.5.2</mapapps.version>
+        <mapapps.version>3.6.0</mapapps.version>
         <!-- java lib versions -->
         <ct.jsregistry.version>1.0.15</ct.jsregistry.version>
         <ct.jsrt-test.version>1.0.7</ct.jsrt-test.version>
@@ -626,8 +626,8 @@
                                 </goals>                                
                                 <configuration>
                                     <tag>${project.version}</tag>
-                                    <!--<artifact>${project.build.directory}/${project.groupId}.${project.artifactId}-${project.version}.jar</artifact>-->
-                                    <!--<fileSets>
+                                    <artifact>${project.build.directory}/${project.groupId}.${project.artifactId}-${project.version}.jar</artifact>
+                                    <fileSets>
                                         <fileSet>
                                             <directory>${project.build.directory}</directory>
                                             <includes>
@@ -635,7 +635,7 @@
                                                 <include>${project.artifactId}*.zip</include>
                                             </includes>
                                         </fileSet>
-                                    </fileSets>-->
+                                    </fileSets>
                                 </configuration>
                             </execution>
                         </executions>
