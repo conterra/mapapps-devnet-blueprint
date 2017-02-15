@@ -19,7 +19,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
-    <artifactId>ct-mapapps-remote-project-blueprint</artifactId>
+    <artifactId>mapapps-remote-project-blueprint</artifactId>
     <version>3.7.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- DISABLE repositories and pluginRepositories if inside the con terra! -->
@@ -646,7 +646,7 @@
                                 </goals>                                
                                 <configuration>
                                     <tag>${project.version}</tag>
-                                    <artifact>${project.build.directory}/${project.groupId}.${project.artifactId}-${project.version}.jar</artifact>
+                                    <artifact>${project.build.directory}/${project.artifactId}-${project.version}.jar</artifact>
                                     <artifact>${project.build.directory}/${project.artifactId}-bundle.zip</artifact>
                                     <artifact>${project.build.directory}/${project.artifactId}-sample-app.zip</artifact>
                                     <fileSets>
