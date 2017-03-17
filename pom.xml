@@ -207,6 +207,10 @@
                     <artifactId>ct-jsrt-test-maven-plugin</artifactId>
                     <version>${ct.jsrt-test.version}</version>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>1.9.5</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <!-- set as source dir, so that you can edit it correctly in netbeans -->
