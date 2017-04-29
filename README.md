@@ -1,5 +1,7 @@
 # map.apps Remote Project Blueprint
 
+Development Guide
+------------------
 ### Pre Conditions
 This project requires an existing installation of map.apps to work. You need top copy the libs provided in the CD-Contents folder "m2repository" inside your local maven repository.
 
