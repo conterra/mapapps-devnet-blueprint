@@ -1,5 +1,6 @@
 {
   "properties": {
+    "title": "${apptitle}",
     "amdPackages": "apprt@^3.x"
   },
   "load": {
@@ -18,8 +19,7 @@
       "toolset@3.x",
       "toolrules@3.x",
       "basemaptoggler@3.x",
-      "banner@3.x",
-      "sample_helloworld"
+      "banner@3.x"
     ],
     "skipBundles": [],
     "require": [
