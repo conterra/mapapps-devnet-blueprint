@@ -1,33 +1,42 @@
 {
-    "Bundle-SymbolicName": "sample_helloworld",
-    "Bundle-Version": "3.7.5-SNAPSHOT",
-    "Bundle-Name": "${bundleName}",
-    "Bundle-Description": "${bundleDescription}",
-    "Bundle-Vendor": "con terra GmbH",
-    "Bundle-Category": ["sample"],
-    "Bundle-Icon": {},
-    "Bundle-License": {},
-    "Product-Name": "devnet-mapapps-remote-project-blueprint",
-    "Components": [{
-            "name": "HelloTool",
-            "impl": "ct/tools/Tool",
-            "provides": "ct.tools.Tool",
-            "propertiesConstructor": true,
-            "properties": {
-                "id": "helloTool",
-                "title": "Click Me",
-                "toolRole": "toolset",
-                "clickHandler": "print"
-            },
-            "references": [{
-                    "name": "handlerScope",
-                    "providing": "sample_helloworld.Hello"
-                }]
-        }, {
-            "name": "Hello",
-            "provides": ["sample_helloworld.Hello"],
-            "properties": {
-                "-message": "${hello}"
-            }
-        }]
+  "Bundle-SymbolicName": "sample_helloworld",
+  "Bundle-Version": "4.1.0-SNAPSHOT",
+  "Bundle-Name": "${bundleName}",
+  "Bundle-Description": "${bundleDescription}",
+  "Bundle-Vendor": "con terra GmbH",
+  "Bundle-Category": [
+    "sample"
+  ],
+  "Bundle-Icon": {},
+  "Bundle-License": {},
+  "Product-Name": "devnet-mapapps-remote-project-blueprint",
+  "Components": [
+    {
+      "name": "HelloTool",
+      "impl": "ct/tools/Tool",
+      "provides": "ct.tools.Tool",
+      "propertiesConstructor": true,
+      "properties": {
+        "id": "helloTool",
+        "title": "Click Me",
+        "toolRole": "toolset",
+        "clickHandler": "print"
+      },
+      "references": [
+        {
+          "name": "handlerScope",
+          "providing": "sample_helloworld.Hello"
+        }
+      ]
+    },
+    {
+      "name": "Hello",
+      "provides": [
+        "sample_helloworld.Hello"
+      ],
+      "properties": {
+        "-message": "${hello}"
+      }
+    }
+  ]
 }

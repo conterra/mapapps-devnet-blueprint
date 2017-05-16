@@ -16,11 +16,12 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-remote-project-blueprint</artifactId>
-    <version>3.7.5-SNAPSHOT</version>
+    <version>4.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- DISABLE repositories and pluginRepositories if inside the con terra! -->
     <repositories>
@@ -30,7 +31,7 @@
             <url>http://52north.org/maven/repo/releases</url>
         </repository>
     </repositories>
-    <pluginRepositories>        
+    <pluginRepositories>
         <pluginRepository>
             <id>52n-dependencies</id>
             <name>52n-dependencies</name>
@@ -43,7 +44,7 @@
                 <!-- import dependencies management from mapapps -->
                 <groupId>de.conterra.mapapps</groupId>
                 <artifactId>ct-mapapps</artifactId>
-                <version>${mapapps.version}</version>
+                <version>${mapapps4.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -86,7 +87,7 @@
                 <plugin>
                     <groupId>de.conterra.mapapps</groupId>
                     <artifactId>mapapps-maven-plugin</artifactId>
-                    <version>${mapapps.version}</version>
+                    <version>${mapapps4.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>de.conterra.jsregistry</groupId>
@@ -115,8 +116,8 @@
                         <target>1.7</target>
                         <showDeprecation>true</showDeprecation>
                         <excludes>
-                        <exclude>**/*</exclude>
-                    </excludes>
+                            <exclude>**/*</exclude>
+                        </excludes>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -178,7 +179,7 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>1.10</version>
-                </plugin> 
+                </plugin>
                 <plugin>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5.3</version>
@@ -286,7 +287,7 @@
                     <!-- add here properties which are used in plugin configuration resolution -->
                     <properties>
                         <!-- deployment of map.apps installation -->
-                        <mapapps.remote.base />
+                        <mapapps.remote.base/>
                     </properties>
                 </configuration>
             </plugin>
@@ -311,7 +312,9 @@
                                     <version>${mapapps.version}</version>
                                     <classifier>src</classifier>
                                     <outputDirectory>${project.build.directory}/unpacked</outputDirectory>
-                                    <includes>bundles/base/themes/themes/winter/**,bundles/base/themes/themes/common/**,bundles/base/templates/templates/common/**</includes>
+                                    <includes>
+                                        bundles/base/themes/themes/winter/**,bundles/base/themes/themes/common/**,bundles/base/templates/templates/common/**
+                                    </includes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -382,8 +385,9 @@
                             <replacements>
                                 <replacement>
                                     <!-- remove bundleLocations from app.json -->
-                                    <token>\s*"bundleLocations"\s*:\s*\[\s*"localbundles"\s*,\s*"bundles"\s*\]\s*,\s*</token>
-                                    <value />
+                                    <token>\s*"bundleLocations"\s*:\s*\[\s*"localbundles"\s*,\s*"bundles"\s*\]\s*,\s*
+                                    </token>
+                                    <value/>
                                 </replacement>
                             </replacements>
                         </configuration>
@@ -400,7 +404,7 @@
                         <goals>
                             <goal>deployAppTemplate</goal>
                         </goals>
-                        <configuration>                            
+                        <configuration>
                             <templateFile>${project.build.directory}/${project.artifactId}-sample-app.zip</templateFile>
                             <templateResources>
                                 <templateResource>
@@ -427,7 +431,7 @@
                     <finalName>${project.artifactId}-bundle</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
-                <executions> 
+                <executions>
                     <execution>
                         <id>make-zip</id>
                         <phase>package</phase>
@@ -436,7 +440,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>    
+            </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -454,7 +458,9 @@
                     <webAppConfig>
                         <contextPath>/</contextPath>
                         <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
-                            <resourcesAsCSV>${basedir}/src/main,${basedir}/src/test/webapp,${project.build.directory}/${project.artifactId}</resourcesAsCSV>
+                            <resourcesAsCSV>
+                                ${basedir}/src/main,${basedir}/src/test/webapp,${project.build.directory}/${project.artifactId}
+                            </resourcesAsCSV>
                         </baseResource>
                         <!-- include ct-jsregistry-embedded-<version>.jar as web-fragment provider -->
                         <webInfIncludeJarPattern>.*/ct-jsregistry-embedded-[^/]*\.jar$</webInfIncludeJarPattern>
@@ -469,7 +475,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-release-plugin</artifactId>                
+                <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <preparationGoals>clean</preparationGoals>
@@ -485,10 +491,11 @@
     </build>
     <scm>
         <connection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</connection>
-        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git
+        </developerConnection>
         <url>https://github.com/conterra/mapapps-remote-project-blueprint</url>
         <tag>HEAD</tag>
-  </scm>
+    </scm>
     <distributionManagement>
         <repository>
             <id>ct-dist-releases-file</id>
@@ -505,19 +512,28 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- dojo custom build parameters -->
         <js.build.outputPath>${project.build.directory}/${project.artifactId}/js</js.build.outputPath>
-        <!-- mapapps.version -->
-        <mapapps.version>3.7.0</mapapps.version>
+        <netbeans.hint.jdkPlatform>JDK_1.7</netbeans.hint.jdkPlatform>
+
+        <!-- JS lib versions -->
+        <mapapps.version>3.8.0</mapapps.version>
+        <mapapps4.version>4.1.0-PIONEER</mapapps4.version>
+
+        <!-- Defines runtime version for the sample project. Defaults to map.apps 3.x -->
+        <!-- To develope mapapps 4.x apps, change this property -->
+        <apprt.version>${mapapps.version}</apprt.version>
+
         <!-- java lib versions -->
-        <ct.jsregistry.version>1.0.25</ct.jsregistry.version>
-        <ct.jsrt-test.version>1.0.8</ct.jsrt-test.version>
+        <ct.jsregistry.version>1.1.1</ct.jsregistry.version>
+        <ct.jsrt-test.version>1.0.9</ct.jsrt-test.version>
 
         <!-- the default app, replaced in the *.html files to switch app names-->
         <default.app.name>sample</default.app.name>
-        <client.config.initjs>$\{mapapps.remote.base\}/resources/jsregistry/root/ct/${mapapps.version}/dojo-init.js</client.config.initjs>
+        <client.config.initjs>$\{mapapps.remote.base\}/resources/jsregistry/root/apprt-boot/${mapapps4.version}/boot.js</client.config.initjs>
+
         <!-- don't do this in production configuration! This allows to go any http traffic over the /proxy endpoint -->
         <proxy.allowedServerUrls>http,*;</proxy.allowedServerUrls>
         <proxy.allowedSSLDNs>*</proxy.allowedSSLDNs>
-        
+
         <!-- required for release build -->
         <scm.push>false</scm.push>
         <scm.username>${env.USER_NAME}</scm.username>
@@ -535,7 +551,7 @@
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>build-helper-maven-plugin</artifactId>                        
+                        <artifactId>build-helper-maven-plugin</artifactId>
                         <executions>
                             <execution>
                                 <id>reserve-jetty-port</id>
@@ -593,7 +609,9 @@
                             <initialDelay>2000</initialDelay>
                             <timeout>60000</timeout>
                             <tests>
-                                <test>http://localhost:${jetty.server.port}/resources/jsregistry/root/intern/latest/runner.html?boot=/js/tests/test-init.js&amp;test=sample_helloworld/tests/all</test>
+                                <test>
+                                    http://localhost:${jetty.server.port}/resources/jsregistry/root/intern/latest/runner.html?boot=/js/tests/test-init.js&amp;test=sample_helloworld/tests/all
+                                </test>
                             </tests>
                         </configuration>
                     </plugin>
@@ -643,17 +661,18 @@
                 <plugins>
                     <plugin>
                         <groupId>de.jutzig</groupId>
-                        <artifactId>github-release-plugin</artifactId>                        
+                        <artifactId>github-release-plugin</artifactId>
                         <executions>
                             <execution>
                                 <id>github-upload</id>
                                 <phase>deploy</phase>
                                 <goals>
                                     <goal>release</goal>
-                                </goals>                                
+                                </goals>
                                 <configuration>
                                     <tag>${project.version}</tag>
-                                    <artifact>${project.build.directory}/${project.artifactId}-${project.version}.jar</artifact>
+                                    <artifact>${project.build.directory}/${project.artifactId}-${project.version}.jar
+                                    </artifact>
                                     <fileSets>
                                         <fileSet>
                                             <directory>${project.build.directory}</directory>
@@ -670,7 +689,7 @@
                         </executions>
                     </plugin>
                 </plugins>
-            </build>            
+            </build>
         </profile>
         <profile>
             <id>write-release-versions</id>
@@ -732,7 +751,9 @@
                                     <goal>checkin</goal>
                                 </goals>
                                 <configuration>
-                                    <message>[update-bundle-package-versions] from ${replace.source.version} to ${replace.target.version}</message>
+                                    <message>[update-bundle-package-versions] from ${replace.source.version} to
+                                        ${replace.target.version}
+                                    </message>
                                     <basedir>${basedir}/src/main/js</basedir>
                                     <pushChanges>${scm.push}</pushChanges>
                                     <username>${scm.username}</username>
