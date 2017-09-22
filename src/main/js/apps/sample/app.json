@@ -95,16 +95,16 @@
             {
               "id": "worldTopo",
               "type": "AGS_TILED",
-              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"
             },
             {
               "id": "streets",
               "type": "AGS_TILED",
-              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"
             },
             {
               "id": "standorte",
-              "url": "http://services.conterra.de/arcgis/rest/services/mapapps/Standorte/FeatureServer",
+              "url": "https://services.conterra.de/arcgis/rest/services/common/standorte/FeatureServer",
               "type": "AGS_FEATURE",
               "title": "Standorte",
               "description": "",
