@@ -4,6 +4,10 @@
     "amdPackages": "apprt@4.x"
   },
   "load": {
+    "bundleLocations": [
+      "localbundles",
+      "bundles"
+    ],
     "allowedBundles": [
       "system@4.x",
       "appsoverview@4.x",
