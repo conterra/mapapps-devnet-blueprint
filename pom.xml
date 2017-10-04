@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-remote-project-blueprint</artifactId>
-    <version>4.2.0</version>
+    <version>4.2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- DISABLE repositories and pluginRepositories if inside the con terra! -->
     <repositories>
@@ -44,7 +44,7 @@
                 <!-- import dependencies management from mapapps -->
                 <groupId>de.conterra.mapapps</groupId>
                 <artifactId>ct-mapapps</artifactId>
-                <version>${mapapps4.version}</version>
+                <version>${mapapps.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -87,7 +87,7 @@
                 <plugin>
                     <groupId>de.conterra.mapapps</groupId>
                     <artifactId>mapapps-maven-plugin</artifactId>
-                    <version>${mapapps4.version}</version>
+                    <version>${mapapps.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>de.conterra.jsregistry</groupId>
@@ -212,6 +212,11 @@
                     <artifactId>maven-scm-plugin</artifactId>
                     <version>1.9.5</version>
                 </plugin>
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>1.5</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <!-- set as source dir, so that you can edit it correctly in netbeans -->
@@ -255,14 +260,11 @@
                     <properties>
                         <owner>con terra GmbH</owner>
                         <email>info@conterra.de</email>
-                        <project.inceptionYear>2015</project.inceptionYear>
+                        <project.inceptionYear>2017</project.inceptionYear>
                     </properties>
-                    <excludes>
-                        <exclude>**/README*</exclude>
-                        <exclude>**/*.html</exclude>
-                        <exclude>**/*.json</exclude>
-                        <exclude>src/test/**</exclude>
-                    </excludes>
+                    <includes>
+                        <include>src/main/js/**/*.js</include>
+                    </includes>
                 </configuration>
                 <executions>
                     <execution>
@@ -459,9 +461,7 @@
                     <webAppConfig>
                         <contextPath>/</contextPath>
                         <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
-                            <resourcesAsCSV>
-                                ${basedir}/src/main,${basedir}/src/test/webapp,${project.build.directory}/${project.artifactId}
-                            </resourcesAsCSV>
+                            <resourcesAsCSV>${root.build.outputPath},${basedir}/src/test/webapp</resourcesAsCSV>
                         </baseResource>
                         <!-- include ct-jsregistry-embedded-<version>.jar as web-fragment provider -->
                         <webInfIncludeJarPattern>.*/ct-jsregistry-embedded-[^/]*\.jar$</webInfIncludeJarPattern>
@@ -488,12 +488,61 @@
                     <password>${scm.password}</password>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v8.4.0</nodeVersion>
+                            <npmVersion>5.0.4</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>run gulp default</id>
+                        <goals>
+                            <goal>gulp</goal>
+                        </goals>
+                        <configuration>
+                            <environmentVariables>
+                                <NODE_ENV>production</NODE_ENV>
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- trigger manual: com.github.eirslett:frontend-maven-plugin:gulp@watch-changes -->
+                        <id>watch-changes</id>
+                        <goals>
+                            <goal>gulp</goal>
+                        </goals>
+                        <phase>none</phase>
+                        <configuration>
+                            <arguments>watch</arguments>
+                            <environmentVariables>
+                                <!--<NODE_ENV>production</NODE_ENV>-->
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <scm>
         <connection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</connection>
-        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git
-        </developerConnection>
+        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</developerConnection>
         <url>https://github.com/conterra/mapapps-remote-project-blueprint</url>
         <tag>HEAD</tag>
     </scm>
@@ -512,12 +561,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- dojo custom build parameters -->
-        <js.build.outputPath>${project.build.directory}/${project.artifactId}/js</js.build.outputPath>
+        <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
+        <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
         <netbeans.hint.jdkPlatform>JDK_1.7</netbeans.hint.jdkPlatform>
 
         <!-- JS lib versions -->
-        <mapapps.version>3.9.0</mapapps.version>
-        <mapapps4.version>4.2.0</mapapps4.version>
+        <mapapps.version>4.2.0</mapapps.version>
 
         <!-- Defines runtime version for the sample project. Defaults to map.apps 3.x -->
         <!-- To develope mapapps 4.x apps, change this property -->
@@ -530,12 +579,13 @@
         <!-- the default app, replaced in the *.html files to switch app names-->
         <default.app.name>sample</default.app.name>
         <client.config.initjs>
-            $\{mapapps.remote.base\}/resources/jsregistry/root/apprt-boot/${mapapps4.version}/boot.js
+            $\{mapapps.remote.base\}/resources/jsregistry/root/apprt-boot/${mapapps.version}/boot.js
         </client.config.initjs>
 
         <!-- don't do this in production configuration! This allows to go any http traffic over the /proxy endpoint -->
         <proxy.allowedServerUrls>http,*;</proxy.allowedServerUrls>
         <proxy.allowedSSLDNs>*</proxy.allowedSSLDNs>
+        <jetty.port>9090</jetty.port>
 
         <!-- required for release build -->
         <scm.push>false</scm.push>
@@ -657,6 +707,57 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>watch-all</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>trigger-watch-changes</id>
+                                <phase>test-compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <async>true</async>
+                                    <executable>${env.M2_HOME}/bin/${mvn.cmd}</executable>
+                                    <!--<workingDirectory>${basedir}</workingDirectory>-->
+                                    <arguments>
+                                        <argument>com.github.eirslett:frontend-maven-plugin:gulp@watch-changes
+                                        </argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>Windows</family>
+                </os>
+            </activation>
+            <properties>
+                <mvn.cmd>mvn.cmd</mvn.cmd>
+            </properties>
+        </profile>
+        <profile>
+            <id>unix</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+                <mvn.cmd>mvn</mvn.cmd>
+            </properties>
         </profile>
         <profile>
             <id>github-release</id>

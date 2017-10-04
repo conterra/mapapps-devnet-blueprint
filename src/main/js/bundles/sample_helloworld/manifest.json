@@ -1,20 +1,22 @@
 {
-  "Bundle-SymbolicName": "sample_helloworld",
-  "Bundle-Version": "4.1.0-SNAPSHOT",
-  "Bundle-Name": "${bundleName}",
-  "Bundle-Description": "${bundleDescription}",
-  "Bundle-Vendor": "con terra GmbH",
-  "Bundle-Category": [
+  "name": "sample_helloworld",
+  "version": "4.2.1-SNAPSHOT",
+  "title": "${bundleName}",
+  "description": "${bundleDescription}",
+  "vendor": "con terra GmbH",
+  "keywords": [
     "sample"
   ],
-  "Bundle-Icon": {},
-  "Bundle-License": {},
-  "Product-Name": "devnet-mapapps-remote-project-blueprint",
-  "Components": [
+  "icon": {},
+  "license": {},
+  "productName": "devnet-mapapps-remote-project-blueprint",
+  "components": [
     {
       "name": "HelloTool",
       "impl": "ct/tools/Tool",
-      "provides": "ct.tools.Tool",
+      "provides": [
+        "ct.tools.Tool"
+      ],
       "propertiesConstructor": true,
       "properties": {
         "id": "helloTool",
@@ -35,7 +37,7 @@
         "sample_helloworld.Hello"
       ],
       "properties": {
-        "-message": "${hello}"
+        "message": "${hello}"
       }
     }
   ]

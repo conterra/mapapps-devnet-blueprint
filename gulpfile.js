@@ -13,9 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-define(["dojo/i18n!./nls/bundle"],
-    function (i18n) {
-        return {
-            i18n: i18n
-        }
-    });
+const gulp = require("gulp");
+const run_sequence = require('run-sequence');
+const mapapps = require('ct-mapapps-gulp-js');
+
+mapapps.registerTasks({
+    themes: ["sample_theme"],
+    hasBaseThemes: true,
+    forceTranspile: true
+});
+
+gulp.task("default", function(callback) {
+    run_sequence(
+            "copy-resources",
+            "themes-copy",
+            ["js-transpile", "themes-compile"],
+            callback);
+});

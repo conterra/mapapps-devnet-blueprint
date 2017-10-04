@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2017 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-define({
+module.exports = {
     root: {
-        service: {
-            streets: "Streets",
-            topo: "Topography"
+        apptitle: "map.apps 4 Sample",
+        map: {
+            esrisites: {
+                title: "Esri Germany Group Sites",
+                popup: {
+                    address: "Address",
+                    contact: "Contact",
+                    tel: "Telephone:",
+                    mail: "Email:",
+                    link: "Internet:"
+                }
+            }
         }
     },
-    de: true
-});
+    "de": true
+};

@@ -1,6 +1,6 @@
 {
   "properties": {
-    "amdPackages": "apprt@^3.x"
+    "title": "${apptitle}"
   },
   "load": {
     "bundleLocations": [
@@ -8,20 +8,23 @@
       "bundles"
     ],
     "allowedBundles": [
-      "system@3.x",
-      "splashscreen@3.x",
-      "map@3.x",
-      "themes@3.x",
-      "templates@3.x",
-      "templatelayout@3.x",
-      "windowmanager@3.x",
-      "toolset@3.x",
-      "toolrules@3.x",
-      "basemaptoggler@3.x",
-      "banner@3.x",
+      "system",
+      "banner",
+      "basemaptoggler",
+      "console",
+      "notifier",
+      "splashscreen",
+      "templatelayout",
+      "template-seasons",
+      "theme-everlasting",
+      "theme-winter",
+      "theme-spring",
+      "theme-summer",
+      "theme-autumn",
+      "map-init",
+      "toolset",
       "sample_helloworld"
     ],
-    "skipBundles": [],
     "require": [
       "${app}.app"
     ],
@@ -30,6 +33,11 @@
     ]
   },
   "bundles": {
+    "appsoverview": {
+      "RedirectToApp": {
+        "openWindow": false
+      }
+    },
     "banner": {
       "BannerWidget": {
         "label": "Developer Network",
@@ -38,87 +46,71 @@
         "link": "http://developernetwork.conterra.de"
       }
     },
-    "map": {
-      "MapState": {
-        "initialExtent": {
-          "xmin": -1100000,
-          "ymin": 4000000,
-          "xmax": 3500000,
-          "ymax": 8800000,
-          "spatialReference": {
-            "wkid": 3857
+    "basemaptoggler": {
+      "Config": {
+        "nextBasemap": "hybrid"
+      }
+    },
+    "coordinateviewer": {
+      "Config": {
+        "decimalPlaces": 3,
+        "showScale": true,
+        "showCoordinates": true,
+        "degreeFormat": true,
+        "transformSrs": true,
+        "targetSrs": "WGS84"
+      }
+    },
+    "map-init": {
+      "Config": {
+        "map": {
+          "layers": [
+            {
+              "id": "esri_group_sites",
+              "title": "${map.esrisites.title}",
+              "portalItem": {
+                "id": "d0e2a965dd2e4f24b33495a4c2475bed"
+              },
+              "type": "AGS_FEATURE",
+              "elevationInfo": {
+                "mode": "on-the-ground"
+              },
+              "layerId": 0,
+              "visible": true,
+              "popupEnabled": true,
+              "outFields": [
+                "*"
+              ],
+              "popupTemplate": {
+                "title": "{name2}",
+                "content": "<div><font size=\"4\">{name3}</font></div><div><hr /></div><h2>${map.esrisites.popup.address}</h2><div><font size=\"2\">{street}<br /></font></div><div><font size=\"2\">{plz_city}</font></div><div><h2>${map.esrisites.popup.contact}</h2></div><div><font size=\"2\">${map.esrisites.popup.tel} <a href=\"tel:{tel}\">{tel}</a></font></div><div><font size=\"2\">${map.esrisites.popup.mail} <a href=\"mailto:{email}\">{email}</a></font></div><div><font size=\"2\">${map.esrisites.popup.link} <a href=\"{link}\" target=\"_blank\">{link}</a></font></div>"
+              }
+            }
+          ],
+          "basemap": "streets",
+          "ground": {
+            "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+            "type": "ELEVATION"
+          }
+        },
+        "view": {
+          "viewmode": "2D",
+          "extent": {
+            "xmin": 600000,
+            "ymin": 5800000,
+            "xmax": 1700000,
+            "ymax": 7600000,
+            "spatialReference": 3857
           }
         }
+      }
+    },
+    "themes": {
+      "ThemeModel": {
+        "_selectedTheme": "everlasting"
       },
-      "MapModelFactory": {
-        "_configData": {
-          "maps": [
-            {
-              "id": "default",
-              "glass_pane": [],
-              "operationalLayer": [
-                {
-                  "title": "Standorte",
-                  "enabled": true,
-                  "service": "standorte",
-                  "category": {
-                    "title": "Standorte",
-                    "description": "",
-                    "imgUrl": ""
-                  },
-                  "layers": [
-                    "*"
-                  ],
-                  "id": "standorte0",
-                  "options": {}
-                }
-              ],
-              "baseLayer": [
-                {
-                  "title": "${service.streets}",
-                  "service": "streets",
-                  "enabled": true
-                },
-                {
-                  "title": "${service.topo}",
-                  "service": "worldTopo",
-                  "enabled": false
-                }
-              ]
-            }
-          ]
-        }
-      },
-      "MappingResourceRegistryFactory": {
-        "_knownServices": {
-          "services": [
-            {
-              "id": "worldTopo",
-              "type": "AGS_TILED",
-              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"
-            },
-            {
-              "id": "streets",
-              "type": "AGS_TILED",
-              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"
-            },
-            {
-              "id": "standorte",
-              "url": "https://services.conterra.de/arcgis/rest/services/common/standorte/FeatureServer",
-              "type": "AGS_FEATURE",
-              "title": "Standorte",
-              "description": "",
-              "layers": [
-                {
-                  "id": "0",
-                  "title": "Standorte",
-                  "enabled": true
-                }
-              ],
-              "options": {}
-            }
-          ]
-        }
+      "ThemeSelector": {
+        "componentEnabled": true
       }
     }
   }
