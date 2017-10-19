@@ -33,11 +33,6 @@
     ]
   },
   "bundles": {
-    "appsoverview": {
-      "RedirectToApp": {
-        "openWindow": false
-      }
-    },
     "banner": {
       "BannerWidget": {
         "label": "Developer Network",
@@ -49,16 +44,6 @@
     "basemaptoggler": {
       "Config": {
         "nextBasemap": "hybrid"
-      }
-    },
-    "coordinateviewer": {
-      "Config": {
-        "decimalPlaces": 3,
-        "showScale": true,
-        "showCoordinates": true,
-        "degreeFormat": true,
-        "transformSrs": true,
-        "targetSrs": "WGS84"
       }
     },
     "map-init": {
