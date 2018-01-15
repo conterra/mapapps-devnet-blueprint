@@ -84,7 +84,6 @@
     <build>
         <pluginManagement>
             <plugins>
-
                 <plugin>
                     <groupId>de.conterra.mapapps</groupId>
                     <artifactId>mapapps-maven-plugin</artifactId>
