@@ -23,6 +23,8 @@
       "theme-autumn",
       "map-init",
       "toolset",
+      "viewmodeswitcher",
+      "mapnavigation",
       "sample_helloworld"
     ],
     "require": [
@@ -96,6 +98,28 @@
       },
       "ThemeSelector": {
         "componentEnabled": true
+      }
+    },
+    "toolset": {
+      "ToolsetManager": {
+        "toolsets": [
+          {
+            "id": "mapview_tools",
+            "tools": [
+              "zoomInTool",
+              "zoomOutTool",
+              "compassTool",
+              "restoreInitialViewTool",
+              "viewmodeSwitcherTool"
+            ],
+            "registerWidget": {
+              "widgetRole": "mapview_tools"
+            },
+            "container": "ignore",
+            "windowType": "container",
+            "cssClass": "muted"
+          }
+        ]
       }
     }
   }
