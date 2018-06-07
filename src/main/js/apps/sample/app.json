@@ -9,8 +9,6 @@
         ],
         "allowedBundles": [
             "system",
-            "banner",
-            "basemaptoggler",
             "console",
             "notifier",
             "splashscreen",
@@ -23,8 +21,18 @@
             "theme-autumn",
             "map-init",
             "toolset",
+            "banner",
+            "basemaptoggler",
+            "custominfo",
             "viewmodeswitcher",
             "mapnavigation",
+            "legend",
+            "locateme",
+            "printing",
+            "scalebar",
+            "share-link",
+            "omnisearch",
+            "locator-store",
             "sample_helloworld"
         ],
         "require": [
@@ -47,6 +55,64 @@
             "Config": {
                 "nextBasemap": "hybrid"
             }
+        },
+        "custominfo": {
+            "CustomInfoToggleTool": [
+                {
+                    "widgetSettings": {
+                        "content": "<p>Dies ist ein Beispiel für ein Impressum.</p>",
+                        "window": {
+                            "marginBox": {
+                                "w": 320,
+                                "h": 500
+                            },
+                            "draggable": true,
+                            "closable": true,
+                            "modal": true,
+                            "maximizable": false,
+                            "resizable": true,
+                            "title": "Impressum"
+                        }
+                    },
+                    "type": "IMPRINT",
+                    "toolClass": "ctInfo",
+                    "title": "Impressum",
+                    "tooltip": "Zeige Impressum",
+                    "tooltipPositions": [
+                        "after",
+                        "above",
+                        "below",
+                        "before"
+                    ],
+                    "iconClass": "icon-custom-info-imprint",
+                    "togglable": true,
+                    "id": "IMPRINT_Imprint_CustomInfoTool"
+                },
+                {
+                    "widgetSettings": {
+                        "content": "<p>Dies ist ein Beispiel für ein Impressum.</p>",
+                        "window": {
+                            "marginBox": {
+                                "w": "100%",
+                                "h": "100%"
+                            },
+                            "draggable": true,
+                            "closable": true,
+                            "modal": true,
+                            "maximizable": false,
+                            "resizable": true,
+                            "title": "Impressum"
+                        }
+                    },
+                    "type": "IMPRINT",
+                    "toolClass": "ctInfo",
+                    "title": "Impressum",
+                    "tooltip": "Zeige Impressum",
+                    "iconClass": "icon-custom-info-imprint",
+                    "togglable": true,
+                    "id": "IMPRINT_Imprint_CustomInfoTool_mobile"
+                }
+            ]
         },
         "map-init": {
             "Config": {
@@ -100,6 +166,56 @@
                 "componentEnabled": true
             }
         },
+        "templates": {
+            "TemplateModel": {
+                "_templates": [
+                    {
+                        "name": "seasons",
+                        "widgets": [
+                            {
+                                "widgetRole": "drawer_button",
+                                "attachTo": "map_topleft",
+                                "props": {
+                                    "layoutIndex": 0
+                                }
+                            },
+                            {
+                                "widgetRole": "sharelink",
+                                "window": {
+                                    "dockable": false,
+                                    "dockingBar": null
+                                }
+                            },
+                            {
+                                "widgetRole": "legend",
+                                "sublayout": [
+                                    "mobile_portrait",
+                                    "mobile_landscape"
+                                ],
+                                "window": {
+                                    "dockable": false,
+                                    "dockingBar": null
+                                }
+                            },
+                            {
+                                "widgetRole": "printing",
+                                "window": {
+                                    "dockable": false,
+                                    "dockingBar": null
+                                }
+                            },
+                            {
+                                "widgetRole": "banner",
+                                "sublayout": [
+                                    "mobile_portrait"
+                                ],
+                                "attachTo": "footer_right"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
         "toolset": {
             "ToolsetManager": {
                 "toolsets": [
@@ -110,8 +226,7 @@
                             "zoomOutTool",
                             "compassTool",
                             "restoreInitialViewTool",
-                            "viewmodeSwitcherTool",
-                            "helloTool"
+                            "viewmodeSwitcherTool"
                         ],
                         "registerWidget": {
                             "widgetRole": "mapview_tools"
@@ -119,6 +234,23 @@
                         "container": "ignore",
                         "windowType": "container",
                         "cssClass": "muted"
+                    },
+                    {
+                        "id": "drawer_left",
+                        "title": "Werkzeuge",
+                        "cssClass": "ct-main-app-menu",
+                        "tools": [
+                            "printingToggleTool",
+                            "sharelinkTool",
+                            "helloTool",
+                            "IMPRINT_Imprint_CustomInfoTool",
+                            "IMPRINT_Imprint_CustomInfoTool_mobile"
+                        ],
+                        "registerWidget": {
+                            "widgetRole": "drawer_button"
+                        },
+                        "container": "ignore",
+                        "windowType": "drawer_left"
                     }
                 ]
             }
