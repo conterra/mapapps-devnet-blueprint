@@ -27,6 +27,8 @@
             "viewmodeswitcher",
             "mapnavigation",
             "legend",
+            "popups-default",
+            "scalebar",
             "locateme",
             "printing",
             "scalebar",
@@ -130,7 +132,6 @@
                             },
                             "layerId": 0,
                             "visible": true,
-                            "popupEnabled": true,
                             "outFields": [
                                 "*"
                             ],
