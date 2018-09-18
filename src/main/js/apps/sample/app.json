@@ -31,7 +31,6 @@
             "scalebar",
             "locateme",
             "printing",
-            "scalebar",
             "share-link",
             "omnisearch",
             "locator-store",
@@ -223,6 +222,7 @@
                     {
                         "id": "mapview_tools",
                         "tools": [
+                            "locateMeTool",
                             "zoomInTool",
                             "zoomOutTool",
                             "compassTool",
