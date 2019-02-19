@@ -26,7 +26,6 @@
             "custominfo",
             "viewmodeswitcher",
             "mapnavigation",
-            "legend",
             "popups-default",
             "scalebar",
             "locateme",
@@ -118,28 +117,7 @@
         "map-init": {
             "Config": {
                 "map": {
-                    "layers": [
-                        {
-                            "id": "esri_group_sites",
-                            "title": "${map.esrisites.title}",
-                            "portalItem": {
-                                "id": "d0e2a965dd2e4f24b33495a4c2475bed"
-                            },
-                            "type": "AGS_FEATURE",
-                            "elevationInfo": {
-                                "mode": "on-the-ground"
-                            },
-                            "layerId": 0,
-                            "visible": true,
-                            "outFields": [
-                                "*"
-                            ],
-                            "popupTemplate": {
-                                "title": "{name2}",
-                                "content": "<div><font size=\"4\">{name3}</font></div><div><hr /></div><h2>${map.esrisites.popup.address}</h2><div><font size=\"2\">{street}<br /></font></div><div><font size=\"2\">{plz_city}</font></div><div><h2>${map.esrisites.popup.contact}</h2></div><div><font size=\"2\">${map.esrisites.popup.tel} <a href=\"tel:{tel}\">{tel}</a></font></div><div><font size=\"2\">${map.esrisites.popup.mail} <a href=\"mailto:{email}\">{email}</a></font></div><div><font size=\"2\">${map.esrisites.popup.link} <a href=\"{link}\" target=\"_blank\">{link}</a></font></div>"
-                            }
-                        }
-                    ],
+                    "layers": [],
                     "basemap": "streets",
                     "ground": {
                         "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
