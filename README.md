@@ -2,6 +2,12 @@
 
 This project is a blueprint for starting a con terra developer network bundle.
 
+* [Contents](https://github.com/conterra/mapapps-remote-project-blueprint#contents)
+* [Requirements](https://github.com/conterra/mapapps-remote-project-blueprint#requirements)
+* [Usage](https://github.com/conterra/mapapps-remote-project-blueprint#usage)
+* [Updating from older versions](https://github.com/conterra/mapapps-remote-project-blueprint#updating-from-older-versions)
+* [References](https://github.com/conterra/mapapps-remote-project-blueprint#references)
+
 ## Contents
 
 This Maven project includes some of the core concepts for developing UI driven bundles in map.apps. Use this readme as a guide for what to discover in this project. After studying this project, you should be able to answer the following questions:
@@ -92,6 +98,18 @@ To execute the unit tests inside the project, run [http://localhost:9090/js/test
 
 * The gulpfile that determines the build process can be found in the root directory: `/gulpfile.js`
 * package.json / npm
+
+## Updating from older versions
+
+### from 4.6.0 to 4.6.1
+1. adjust the `mapapps.version` property in `./pom.xml`  to `4.6.1` 
+
+### from 4.5.0 or below to 4.6.0
+1. adjust the `mapapps.version` property in `./pom.xml`  to `4.6.0`
+2. adjust versions of devDependencies in `./package.json` according to the list below:
+    * "ct-mapapps-gulp-js": "~0.1.3"    
+    * "vue-template-compiler": "2.5.17"
+3. go to `./src/test/webapp/index.html` and replace the `corsEnabledServers: ["@@mapapps.remote.base@@"]` with `trustedServers: ["@@mapapps.remote.base@@"]` inside the apprt request configuration object.
 
 ## References
 
