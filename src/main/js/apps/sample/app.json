@@ -33,7 +33,7 @@
     "banner": {
       "BannerWidget": {
         "label": "Developer Network",
-        "image": "https://www.conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
+        "image": "https://conterra.de/themes/conterra/logo.svg",
         "imagePosition": "above",
         "link": "http://developernetwork.conterra.de"
       }
