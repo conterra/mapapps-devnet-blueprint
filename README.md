@@ -22,7 +22,7 @@ This Maven project includes some of the core concepts for developing UI driven b
 
 ## Requirements
 
-* map.apps 4.6.0 (or above)
+* map.apps 4.7.1
 * all resources from `CD-Contents/sdk/m2-repository` need to be copied manually to your local maven repository (e.g. `%UserProfile%/.m2/repository` for Windows, `~/.m2/repository` for MacOS).
 
 ## Usage
@@ -100,6 +100,10 @@ To execute the unit tests inside the project, run [http://localhost:9090/js/test
 * package.json / npm
 
 ## Updating from older versions
+
+### from 4.7.0 to 4.7.1
+1. adjust the `mapapps.version` property in `./pom.xml`  to `4.7.1` 
+2. adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.1` 
 
 ### from 4.6.1 to 4.7.0
 1. adjust the `mapapps.version` property in `./pom.xml`  to `4.7.0` 
