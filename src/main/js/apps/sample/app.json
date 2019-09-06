@@ -55,11 +55,6 @@
                 "link": "http://developernetwork.conterra.de"
             }
         },
-        "basemaptoggler": {
-            "Config": {
-                "nextBasemap": "hybrid"
-            }
-        },
         "custominfo": {
             "CustomInfoToggleTool": [
                 {
