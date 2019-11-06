@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class Hello {
+export default class Hello {
 
     activate() {
         this.msg = this._properties.message;
@@ -28,5 +28,3 @@ class Hello {
     }
 
 }
-
-module.exports = Hello;
