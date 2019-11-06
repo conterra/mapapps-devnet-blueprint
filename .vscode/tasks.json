@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Jetty Server",
+            "type": "shell",
+            "command": "mvn clean jetty:run -P watch-all",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Install",
+            "type": "shell",
+            "command": "mvn clean install -P compress",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
