@@ -8,22 +8,10 @@ This project is a blueprint for starting a con terra developer network bundle.
 * [Updating from older versions](https://github.com/conterra/mapapps-remote-project-blueprint#updating-from-older-versions)
 * [References](https://github.com/conterra/mapapps-remote-project-blueprint#references)
 
-## Contents
-
-This Maven project includes some of the core concepts for developing UI driven bundles in map.apps. Use this readme as a guide for what to discover in this project. After studying this project, you should be able to answer the following questions:
-
-* How can I use **Vue.js** to build widgets following the **MVVM** pattern?
-* How does the **MVVM** pattern help to make UI components and models **testable**?
-* How do I build widgets with ready-to-use UI components from Vuetify.js?
-* How do I build a custom theme (theme-custom)?
-* How can the view-model interact via **bindings** with (Accessor) models from the **ESRI ArcGIS API for JavaScript**?
-* How is my **layout** integrated into **map.apps templates**?
-* How do **gulp** processes modify my source code?
-
 ## Requirements
 
-* map.apps 4.7.1
-* all resources from `CD-Contents/sdk/m2-repository` need to be copied manually to your local maven repository (e.g. `%UserProfile%/.m2/repository` for Windows, `~/.m2/repository` for MacOS).
+* map.apps 4.7.2
+* All resources from `map.apps-VERSION/sdk/m2-repository` need to be copied manually to your local Maven repository (e.g. `%UserProfile%/.m2/repository` for Windows, `~/.m2/repository` for MacOS).
 
 ## Usage
 
@@ -31,10 +19,12 @@ The project supports a 'remote project' and 'standalone project' mode.
 
 ### Use 'remote project' mode
 
-In this mode a map.apps installation is available elsewhere and most JavaScript resources are fetched from this installation.
-This mode is recommended.
+In this mode a running map.apps installation must be available on a different machine or server and the map.apps core JavaScript resources are fetched from there.
+This mode is the recommended one.
 
-The URL of the mapapps server can be declared in the pom.xml. Replace:
+The URL to the existing map.apps installation can be configured inside the `pom.xml` file of this project: 
+
+Replace
 
 ```xml
  <mapapps.remote.base>.</mapapps.remote.base>
@@ -46,46 +36,71 @@ with
  <mapapps.remote.base>http://yourserver/mapapps</mapapps.remote.base>
 ```
 
-As alternative the URL can be declared in a file called `build.properties` with the content
+As an alternative, the URL can be declared in a file called `build.properties` with the content
 
 ```properties
 mapapps.remote.base=http://yourserver/mapapps
 ```
 
-and enabling the "env-dev" maven profile.
-Append `-P env-dev` to any maven execution or declare the profile as activated by default in your maven settings.xml.
+The "env-dev" Maven profile must be activated when using a `build.properties` file. To activate this profile append `-P env-dev` or `-Denv=dev` to any Maven execution or declare the profile as activated by default in your Maven `settings.xml` file.
 
-### Use 'standalone project' mode
+### Use 'stand-alone project' mode
 
-In this mode all JavaScript sources are included to this project during development.
-The drawback of this mode is that you can not test authentication and that the default settings are not read from the remote instance.
+In this mode all JavaScript sources are added to this project during development.
+The drawback of this mode is that you cannot test authentication and that the default settings are not read from the remote instance.
 
-This mode requires that the profile `include-mapapps-deps` is activated.
-Append `-P include-mapapps-deps` to any maven execution or declare the profile as activated by default in your maven settings.xml.
+To use the 'stand-alone project' mode, activate the Maven profile `include-mapapps-deps`: Append `-P include-mapapps-deps` to any Maven execution command or declare the profile as activated by default in your Maven `settings.xml`.
 
-### Start a local http server
+When developing live-configuration widgets in Chrome, this mode is compelling.
 
-Start the integrated jetty server with:
+### Start a local HTTP server
+
+Start the integrated Jetty server with:
 
 ```sh
-mvn jetty:run -P watch-all
+mvn clean jetty:run -P watch-all
 ```
 
-Make sure that the `watch-all` maven profile is activated.
+Make sure that the `watch-all` Maven profile is activated.
 The profile will start a gulp task that watches for changes in your source code.
 
-After a successfull start, the jetty server ist available at [http://localhost:9090](http://localhost:9090).
+The Jetty server is then available at [http://localhost:9090](http://localhost:9090).
+
+### Skip installation of Node.js and NPM during Maven execution
+
+By appending `-Denv=dev -Dlocal.configfile=./build.properties` to any Maven execution the development mode is activated.
+This means:
+
+* Node.js and NPM are not installed
+* the `watch-all` profile is activated
+* the `build.properties` file is loaded
+
+To enforce the installation of Node.js and NPM execute:
+
+```
+mvn initialize
+```
+
+This triggers the installation of Node.js and NPM exclusively.
 
 ### Start coding
 
-For detailed development documentation have a look at [conterra's developer network](https://developernetwork.conterra.de/de/documentation/mapapps/development-guide) (account required).
+For detailed documentation on how to develop for map.apps go to the [conterra Developer Network](https://developernetwork.conterra.de/de/documentation/mapapps/development-guide) (registration required).
 
 ### Make your code production ready
 
-To ensure that all files are compressed/minified and a dependencies.json is calculated execute:
+Execute the following command to ensure that all files are compressed/minified and a `dependencies.json` file is calculated:
 
 ```sh
 mvn clean install -P compress
+```
+
+### Upload your code to a map.apps installation
+
+To upload your apps and bundles after compression to an existing map.apps installation activate the `upload` profile:
+
+```sh
+mvn clean install -P compress,upload
 ```
 
 ### Running the tests
@@ -96,37 +111,37 @@ To execute the unit tests inside the project, run [http://localhost:9090/js/test
 
 ### Build Process
 
-* The gulpfile that determines the build process can be found in the root directory: `/gulpfile.js`
-* package.json / npm
+* The gulpfile that describes the build process for map.apps themes can be found in the root directory: `/gulpfile.js`
+* The `/package.json` file contains the version numbers for the required dependencies for the gulp build process.
 
 ## Updating from older versions
 
 ### from 4.7.1 to 4.7.2
-1. adjust the `mapapps.version` property in `./pom.xml`  to `4.7.2` 
-2. adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.2` 
-3. add version hint `<version>${ct.jsrt-test.version}</version>` for dependencies `ct-jsrt-test-intern` and `ct-jsrt-test-uitest` in `pom.xml`
-4. Update Gulpfile and remove dev dependencies from `gulpfile.js`. For details see [commit](https://github.com/conterra/mapapps-4-developers/commit/c974a74a08a70316204d5c09aee22f8d39c70446)
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.7.2` 
+2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.2` 
+3. Add the version hint `<version>${ct.jsrt-test.version}</version>` for dependencies `ct-jsrt-test-intern` and `ct-jsrt-test-uitest` in `pom.xml`
+4. Update the Gulpfile and remove the dev dependencies from `gulpfile.js`. For details see [commit](https://github.com/conterra/mapapps-4-developers/commit/c974a74a08a70316204d5c09aee22f8d39c70446)
 
 ### from 4.7.0 to 4.7.1
-1. adjust the `mapapps.version` property in `./pom.xml`  to `4.7.1` 
-2. adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.1` 
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.7.1` 
+2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.1` 
 
 ### from 4.6.1 to 4.7.0
-1. adjust the `mapapps.version` property in `./pom.xml`  to `4.7.0` 
-2. adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.0` 
-3. adjust versions of devDependencies in `./package.json` according to the list below:
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.7.0` 
+2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.0` 
+3. Adjust the versions in `devDependencies` in `./package.json` according to the list below:
     * "eslint-config-ct-prodeng": "^1.0.5"
     * "vue-template-compiler": "2.6.6"
 
 ### from 4.6.0 to 4.6.1
-1. adjust the `mapapps.version` property in `./pom.xml`  to `4.6.1` 
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.6.1` 
 
 ### from 4.5.0 or below to 4.6.0
-1. adjust the `mapapps.version` property in `./pom.xml`  to `4.6.0`
-2. adjust versions of devDependencies in `./package.json` according to the list below:
-    * "ct-mapapps-gulp-js": "~0.1.3"    
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.6.0`
+2. Adjust the versions in `devDependencies` in `./package.json` according to the list below:
+    * "ct-mapapps-gulp-js": "~0.1.3"
     * "vue-template-compiler": "2.5.17"
-3. go to `./src/test/webapp/index.html` and replace the `corsEnabledServers: ["@@mapapps.remote.base@@"]` with `trustedServers: ["@@mapapps.remote.base@@"]` inside the apprt request configuration object.
+3.  Go to `./src/test/webapp/index.html` and replace the `corsEnabledServers: ["@@mapapps.remote.base@@"]` with `trustedServers: ["@@mapapps.remote.base@@"]` inside the apprt request configuration object.
 
 ## References
 
