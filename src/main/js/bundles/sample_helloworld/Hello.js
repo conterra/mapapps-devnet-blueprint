@@ -20,6 +20,7 @@ export default class Hello {
     }
 
     print() {
+        // eslint-disable-next-line no-alert
         alert(this.getMessage());
     }
 
