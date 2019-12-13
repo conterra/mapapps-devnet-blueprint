@@ -464,13 +464,12 @@
                 },
                 "view": {
                     "viewmode": "2D",
-                    "extent": {
-                        "xmin": 600000,
-                        "ymin": 5800000,
-                        "xmax": 1700000,
-                        "ymax": 7600000,
+                    "center": {
+                        "x": 774853,
+                        "y": 6610677,
                         "spatialReference": 3857
-                    }
+                    },
+                    "scale": 140000
                 }
             }
         },
