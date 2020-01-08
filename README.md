@@ -10,7 +10,7 @@ This project is a blueprint for starting a con terra developer network bundle.
 
 ## Requirements
 
-* map.apps 4.7.2
+* map.apps 4.8.0
 * All resources from `map.apps-VERSION/sdk/m2-repository` need to be copied manually to your local Maven repository (e.g. `%UserProfile%/.m2/repository` for Windows, `~/.m2/repository` for MacOS).
 
 ## Usage
@@ -22,7 +22,7 @@ The project supports a 'remote project' and 'standalone project' mode.
 In this mode a running map.apps installation must be available on a different machine or server and the map.apps core JavaScript resources are fetched from there.
 This mode is the recommended one.
 
-The URL to the existing map.apps installation can be configured inside the `pom.xml` file of this project: 
+The URL to the existing map.apps installation can be configured inside the `pom.xml` file of this project:
 
 Replace
 
@@ -116,25 +116,31 @@ To execute the unit tests inside the project, run [http://localhost:9090/js/test
 
 ## Updating from older versions
 
+### from 4.7.2 to 4.8.0
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.8.0`
+2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.4`
+3. Adjust the versions in `devDependencies` in `./package.json` according to the list below:
+    * "ct-mapapps-gulp-js": "^0.2.5"
+
 ### from 4.7.1 to 4.7.2
-1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.7.2` 
-2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.2` 
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.7.2`
+2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.2`
 3. Add the version hint `<version>${ct.jsrt-test.version}</version>` for dependencies `ct-jsrt-test-intern` and `ct-jsrt-test-uitest` in `pom.xml`
 4. Update the Gulpfile and remove the dev dependencies from `gulpfile.js`. For details see [commit](https://github.com/conterra/mapapps-4-developers/commit/c974a74a08a70316204d5c09aee22f8d39c70446)
 
 ### from 4.7.0 to 4.7.1
-1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.7.1` 
-2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.1` 
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.7.1`
+2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.1`
 
 ### from 4.6.1 to 4.7.0
-1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.7.0` 
-2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.0` 
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.7.0`
+2. Adjust the `ct.jsregistry.version` property in `./pom.xml`  to `1.3.0`
 3. Adjust the versions in `devDependencies` in `./package.json` according to the list below:
     * "eslint-config-ct-prodeng": "^1.0.5"
     * "vue-template-compiler": "2.6.6"
 
 ### from 4.6.0 to 4.6.1
-1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.6.1` 
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.6.1`
 
 ### from 4.5.0 or below to 4.6.0
 1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.6.0`
