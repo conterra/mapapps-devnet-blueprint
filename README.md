@@ -10,7 +10,7 @@ This project is a blueprint for starting a con terra developer network bundle.
 
 ## Requirements
 
-* map.apps 4.8.0
+* map.apps 4.8.1
 * All resources from `map.apps-VERSION/sdk/m2-repository` need to be copied manually to your local Maven repository (e.g. `%UserProfile%/.m2/repository` for Windows, `~/.m2/repository` for MacOS).
 
 ## Usage
@@ -115,6 +115,9 @@ To execute the unit tests inside the project, run [http://localhost:9090/js/test
 * The `/package.json` file contains the version numbers for the required dependencies for the gulp build process.
 
 ## Updating from older versions
+
+### from 4.8.0 to 4.8.1
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.8.1`
 
 ### from 4.7.2 to 4.8.0
 1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.8.0`
