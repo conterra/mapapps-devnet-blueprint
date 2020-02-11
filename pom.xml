@@ -165,8 +165,8 @@
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>1.6</version>
                     <configuration>
-                        <nodeVersion>v10.15.3</nodeVersion>
-                        <npmVersion>6.9.0</npmVersion>
+                        <nodeVersion>v12.13.0</nodeVersion>
+                        <npmVersion>6.12.0</npmVersion>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -334,36 +334,36 @@
                 </configuration>
             </plugin>
             <plugin>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
-            <configuration>
-                <httpConnector>
-                    <port>${jetty.port}</port>
-                </httpConnector>
-                <stopPort>9966</stopPort>
-                <stopKey>jetty-stop</stopKey>
-                <stopWait>60000</stopWait>
-                <scanIntervalSeconds>0</scanIntervalSeconds>
-                <reload>manual</reload>
-                <webXml>${basedir}/src/test/webapp/WEB-INF/web.xml</webXml>
-                <useTestScope>true</useTestScope>
-                <webAppConfig>
-                    <contextPath>/</contextPath>
-                    <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
-                        <resourcesAsCSV>${root.build.outputPath},${basedir}/src/test/webapp</resourcesAsCSV>
-                    </baseResource>
-                    <!-- include ct-jsregistry-embedded-<version>.jar as web-fragment provider -->
-                    <webInfIncludeJarPattern>.*/ct-jsregistry-embedded-[^/]*\.jar$</webInfIncludeJarPattern>
-                </webAppConfig>
-                <systemProperties>
-                    <systemProperty>
-                        <!-- set catalina base, so that log files are created in the target directory-->
-                        <name>catalina.base</name>
-                        <value>${project.build.directory}</value>
-                    </systemProperty>
-                </systemProperties>
-            </configuration>
-        </plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <httpConnector>
+                        <port>${jetty.port}</port>
+                    </httpConnector>
+                    <stopPort>9966</stopPort>
+                    <stopKey>jetty-stop</stopKey>
+                    <stopWait>60000</stopWait>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                    <reload>manual</reload>
+                    <webXml>${basedir}/src/test/webapp/WEB-INF/web.xml</webXml>
+                    <useTestScope>true</useTestScope>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                        <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+                            <resourcesAsCSV>${root.build.outputPath},${basedir}/src/test/webapp</resourcesAsCSV>
+                        </baseResource>
+                        <!-- include ct-jsregistry-embedded-<version>.jar as web-fragment provider -->
+                        <webInfIncludeJarPattern>.*/ct-jsregistry-embedded-[^/]*\.jar$</webInfIncludeJarPattern>
+                    </webAppConfig>
+                    <systemProperties>
+                        <systemProperty>
+                            <!-- set catalina base, so that log files are created in the target directory-->
+                            <name>catalina.base</name>
+                            <value>${project.build.directory}</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
@@ -477,6 +477,25 @@
                     <skipDeploy>true</skipDeploy>
                     <createApp>false</createApp>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>de.conterra.mapapps</groupId>
+                <artifactId>mapapps-maven-plugin</artifactId>
+                <configuration>
+                    <!-- only build zip files -->
+                    <skipDeploy>true</skipDeploy>
+                    <sourceDirectory>${js.build.outputPath}/apps</sourceDirectory>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <!-- used to create .zip files containing the apps during the build -->
+                        <id>create-app-zips</id>
+                        <goals>
+                            <goal>deployApps</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -623,7 +642,9 @@
                                     <goal>gulp</goal>
                                 </goals>
                                 <configuration>
-                                    <arguments>run-browser-tests --tests http://localhost:${jetty.server.port}/js/tests/runTests.html</arguments>
+                                    <arguments>run-browser-tests --tests
+                                        http://localhost:${jetty.server.port}/js/tests/runTests.html
+                                    </arguments>
                                 </configuration>
                             </execution>
                         </executions>
@@ -772,7 +793,8 @@
                                     <async>true</async>
                                     <executable>${maven.home}/bin/${mvn.cmd}</executable>
                                     <arguments>
-                                        <argument>com.github.eirslett:frontend-maven-plugin:gulp@watch-changes</argument>
+                                        <argument>com.github.eirslett:frontend-maven-plugin:gulp@watch-changes
+                                        </argument>
                                     </arguments>
                                 </configuration>
                             </execution>
@@ -780,28 +802,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <profile>
-            <id>windows</id>
-            <activation>
-                <os>
-                    <family>Windows</family>
-                </os>
-            </activation>
-            <properties>
-                <mvn.cmd>mvn.cmd</mvn.cmd>
-            </properties>
-        </profile>
-        <profile>
-            <id>unix</id>
-            <activation>
-                <os>
-                    <family>unix</family>
-                </os>
-            </activation>
-            <properties>
-                <mvn.cmd>mvn</mvn.cmd>
-            </properties>
         </profile>
         <profile>
             <id>github-release</id>
@@ -1004,6 +1004,28 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>Windows</family>
+                </os>
+            </activation>
+            <properties>
+                <mvn.cmd>mvn.cmd</mvn.cmd>
+            </properties>
+        </profile>
+        <profile>
+            <id>unix</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+                <mvn.cmd>mvn</mvn.cmd>
+            </properties>
         </profile>
     </profiles>
 </project>
