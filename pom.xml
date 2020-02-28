@@ -668,7 +668,7 @@
                 </dependency>
                 <dependency>
                     <groupId>de.conterra.js</groupId>
-                    <artifactId>babel-polyfill</artifactId>
+                    <artifactId>apprt-polyfill</artifactId>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
