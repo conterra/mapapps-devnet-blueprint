@@ -110,6 +110,12 @@ To execute the unit tests inside the project, run [http://localhost:9090/js/test
 
 ## Updating from older versions
 
+### from 4.8.2 to 4.8.3
+
+1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.8.3`
+2. Adjust the versions in `devDependencies` in `./package.json` according to the list below:
+    * "ct-mapapps-gulp-js": "^0.3.6"
+
 ### from 4.8.1 to 4.8.2
 
 1. Adjust the `mapapps.version` property in `./pom.xml`  to `4.8.2`
