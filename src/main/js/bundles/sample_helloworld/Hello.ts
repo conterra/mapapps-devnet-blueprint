@@ -13,7 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+interface PropertiesObject {
+    [key: string]: any;
+}
+
 export default class Hello {
+    private msg: string;
+    _properties: PropertiesObject;
 
     activate() {
         this.msg = this._properties.message;
