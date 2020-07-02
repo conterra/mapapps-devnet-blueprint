@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-remote-project-blueprint</artifactId>
-    <version>4.8.4</version>
+    <version>4.8.5-SNAPSHOT</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -517,7 +517,7 @@
         <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git
         </developerConnection>
         <url>https://github.com/conterra/mapapps-remote-project-blueprint</url>
-        <tag>4.8.4</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
