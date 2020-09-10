@@ -18,7 +18,7 @@ pipeline {
     }
     environment {
         CREDENTIAL_ID = 'ctsolcisrv'
-        GITHUB_CREDENTIAL_ID = 'ctsolcisrv'
+        GITHUB_CREDENTIAL_ID = 'github-devnet-token'
         AKS_CRED_ID = 'aksCTPrdSrv'
     }
     options {
