@@ -26,9 +26,9 @@ pipeline {
         disableConcurrentBuilds()
         timeout(time: 60, unit: 'MINUTES')
     }
-    triggers {
-        //cron('H H(7-8) * * 1-5')
-    }
+//    triggers {
+//        cron('H H(7-8) * * 1-5')
+//    }
     parameters {
         string(name: 'cause', defaultValue: 'manual', description: 'Who triggered this build?')
         booleanParam(name: 'release', defaultValue: false, description: 'Should a release be performed?')
