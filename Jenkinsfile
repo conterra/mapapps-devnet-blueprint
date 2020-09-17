@@ -4,9 +4,9 @@ def buildParams = [:];
 
 def testStageWasExecute = false;
 
-def updateVersions(targetversion,pushChanges=false,jsmodulename){
+def updateVersions(targetversion,pushChanges=false){
     echo "update versions in manifest.json files to ${targetversion}"
-    sh "mvn --projects ${jsmodulename} validate -P write-release-versions -Dreplace.target.version=${targetversion}"
+    sh "mvn validate -P write-release-versions -Dreplace.target.version=${targetversion}"
     echo "update versions in pom.xml files to ${targetversion}"
     sh "mvn versions:set -DnewVersion=${targetversion} -DgenerateBackupPoms=false"
     sh "mvn scm:checkin -DpushChanges=${pushChanges} -Dmessage=\"[update-version] to ${targetversion}\""
@@ -77,7 +77,7 @@ pipeline {
 
                     echo "Update module versions ${releaseParams}"
                     withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIAL_ID, passwordVariable: 'USER_PW', usernameVariable: 'USER_NAME')]){
-                        updateVersions(releaseParams['RELEASE_VERSION'],false,jsmodulename);
+                        updateVersions(releaseParams['RELEASE_VERSION'],false);
                     }
                 }
             }
@@ -111,7 +111,7 @@ pipeline {
                         jsBuild = "skip"
                     }
                     withCredentials([usernamePassword(credentialsId: CREDENTIAL_ID, passwordVariable: 'USER_PW', usernameVariable: 'USER_NAME')]){
-                        sh "mvn deploy -P compress,release -Dgulp.task=${jsBuild} -DdeployAtEnd=true -Dmaven.test.skip.exec=true -Dct-nexus.username=${USER_NAME} -Dct-nexus.password=${USER_PW}"
+                        sh "mvn deploy -P compress -Dgulp.task=${jsBuild} -DdeployAtEnd=true -Dmaven.test.skip.exec=true -Dct-nexus.username=${USER_NAME} -Dct-nexus.password=${USER_PW}"
                     }
                 }
             }
@@ -137,8 +137,6 @@ pipeline {
                         sh "mvn scm:tag -DpushChanges=true"
                         updateVersions(releaseParams['NEXT_DEV_VERSION'],true,jsmodulename);
                     }
-                    echo "Update Jira versions"
-                    syncJIRAVersions(JIRA_PROJ,releaseParams['RELEASE_VERSION'],releaseParams['NEXT_DEV_VERSION_RAW'])
                 }
             }
             post {
