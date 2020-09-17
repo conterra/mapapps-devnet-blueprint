@@ -87,9 +87,9 @@ pipeline {
             steps {
                 echo "run java tests"
                 // need to run install to have submodules ready for webapp jetty start
-                sh "mvn --projects !${jsmodulename} install"
+                sh "mvn install"
                 echo "run js tests"
-                sh "mvn --projects ${jsmodulename} prepare-package -P run-js-tests"
+                sh "mvn --projects prepare-package -P run-js-tests"
 
                 script {
                     testStageWasExecute = true;
