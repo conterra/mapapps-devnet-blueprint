@@ -55,6 +55,15 @@
                 "link": "http://developernetwork.conterra.de"
             }
         },
+        "basemaptoggler": {
+            "Config": {
+                "itemStyles": {
+                    "esri_street": "icon-thumbnail",
+                    "esri_hybrid": "icon-thumbnail",
+                    "esri_topo": "icon-thumbnail"
+                }
+            }
+        },
         "custominfo": {
             "CustomInfoToggleTool": [
                 {
@@ -529,6 +538,11 @@
                         ]
                     }
                 ]
+            }
+        },
+        "toc": {
+            "Config": {
+                "showBasemaps" : true
             }
         },
         "toolset": {
