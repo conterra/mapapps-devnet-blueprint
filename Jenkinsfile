@@ -102,17 +102,11 @@ pipeline {
             }
         }
         stage('Build') {
-            when { expression { return buildParams.build || buildParams.release} }
+            when { expression { return buildParams.build || buildParams.release } }
             steps {
                 echo "full build + js compress + nexus deploy"
-                script {
-                    def jsBuild = "";
-                    if (testStageWasExecute){
-                        jsBuild = "skip"
-                    }
-                    withCredentials([usernamePassword(credentialsId: CREDENTIAL_ID, passwordVariable: 'USER_PW', usernameVariable: 'USER_NAME')]){
-                        sh "mvn deploy -P compress -Dgulp.task=${jsBuild} -DdeployAtEnd=true -Dmaven.test.skip.exec=true -Dct-nexus.username=$USER_NAME -Dct-nexus.password=$USER_PW"
-                    }
+                withCredentials([usernamePassword(credentialsId: CREDENTIAL_ID, passwordVariable: 'USER_PW', usernameVariable: 'USER_NAME')]) {
+                    sh 'mvn deploy -P compress -DdeployAtEnd=true -Dmaven.test.skip.exec=true -Dct-nexus.username=$USER_NAME -Dct-nexus.password=$USER_PW'
                 }
             }
         }
