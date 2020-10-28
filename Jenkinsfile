@@ -111,7 +111,7 @@ pipeline {
                         jsBuild = "skip"
                     }
                     withCredentials([usernamePassword(credentialsId: CREDENTIAL_ID, passwordVariable: 'USER_PW', usernameVariable: 'USER_NAME')]){
-                        sh "mvn deploy -P compress -Dgulp.task=${jsBuild} -DdeployAtEnd=true -Dmaven.test.skip.exec=true -Dct-nexus.username=${USER_NAME} -Dct-nexus.password=${USER_PW}"
+                        sh "mvn deploy -P compress -Dgulp.task=${jsBuild} -DdeployAtEnd=true -Dmaven.test.skip.exec=true -Dct-nexus.username=$USER_NAME -Dct-nexus.password=$USER_PW"
                     }
                 }
             }
