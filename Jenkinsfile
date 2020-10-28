@@ -76,7 +76,7 @@ pipeline {
                     currentBuild.displayName = "${currentBuild.displayName} RELEASE ${releaseParams['RELEASE_VERSION']}"
 
                     echo "Update module versions ${releaseParams}"
-                    withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIAL_ID, passwordVariable: 'USER_PW', usernameVariable: 'USER_NAME')]){
+                    withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIAL_ID, passwordVariable: 'GITHUB_USER_PW', usernameVariable: 'GITHUB_USER_NAME')]){
                         updateVersions(releaseParams['RELEASE_VERSION'],false);
                     }
                 }
@@ -127,7 +127,7 @@ pipeline {
                         return;
                     }
                     echo "Push SCM tag"
-                    withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIAL_ID, passwordVariable: 'USER_PW', usernameVariable: 'USER_NAME')]){
+                    withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIAL_ID, passwordVariable: 'GITHUB_USER_PW', usernameVariable: 'GITHUB_USER_NAME')]){
                         sh "mvn scm:tag -DpushChanges=true"
                         updateVersions(releaseParams['NEXT_DEV_VERSION'],true,jsmodulename);
                     }
