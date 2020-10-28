@@ -16,7 +16,8 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-remote-project-blueprint</artifactId>
@@ -447,7 +448,7 @@
                                     <!-- remove bundleLocations from app.json -->
                                     <token>\s*"bundleLocations"\s*:\s*\[\s*"localbundles"\s*,\s*"bundles"\s*\]\s*,\s*
                                     </token>
-                                    <value />
+                                    <value/>
                                 </replacement>
                             </replacements>
                         </configuration>
@@ -525,14 +526,14 @@
     </scm>
     <distributionManagement>
         <repository>
-            <id>ct-dist-releases-file</id>
             <name>repository for sdi.suite releases</name>
-            <url>${release.deployment.url}</url>
+            <id>${dist.releases.id}</id>
+            <url>${dist.releases.url}</url>
         </repository>
         <snapshotRepository>
-            <id>ct-dist-snapshots-file</id>
             <name>repository for sdi.suite snapshots</name>
-            <url>${snapshot.deployment.url}</url>
+            <id>${dist.snapshots.id}</id>
+            <url>${dist.snapshots.url}</url>
         </snapshotRepository>
     </distributionManagement>
     <properties>
@@ -556,10 +557,10 @@
             *://*:*/**;
         </proxy.allowedServerUrls>
         <proxy.allowedSSLDNs>*</proxy.allowedSSLDNs>
-        <proxy.use.rules />
+        <proxy.use.rules/>
         <jetty.port>9090</jetty.port>
         <mvn.cmd>mvn</mvn.cmd>
-        <gulp.task />
+        <gulp.task/>
 
         <!-- required for release build -->
         <scm.push>false</scm.push>
