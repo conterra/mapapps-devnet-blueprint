@@ -95,11 +95,6 @@ pipeline {
                     testStageWasExecute = true;
                 }
             }
-            post {
-                always {
-                    junit "**/target/surefire-reports/*.xml"
-                }
-            }
         }
         stage('Build') {
             when { expression { return buildParams.build || buildParams.release } }
