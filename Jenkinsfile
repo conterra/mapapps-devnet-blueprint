@@ -124,7 +124,7 @@ pipeline {
                     echo "Push SCM tag"
                     withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIAL_ID, passwordVariable: 'GITHUB_USER_PW', usernameVariable: 'GITHUB_USER_NAME')]){
                         sh "mvn scm:tag -DpushChanges=true"
-                        updateVersions(releaseParams['NEXT_DEV_VERSION'],true,jsmodulename);
+                        updateVersions(releaseParams['NEXT_DEV_VERSION'],true);
                     }
                 }
             }
