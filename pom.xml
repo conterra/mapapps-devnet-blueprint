@@ -208,7 +208,12 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-scm-plugin</artifactId>
-                    <version>1.9.5</version>
+                    <version>1.10.0</version>
+                    <configuration>
+                        <tag>${project.version}</tag>
+                        <username>${scm.username}</username>
+                        <password>${scm.password}</password>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
