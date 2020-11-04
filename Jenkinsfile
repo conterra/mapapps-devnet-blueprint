@@ -31,8 +31,6 @@ pipeline {
         booleanParam(name: 'release', defaultValue: false, description: 'Should a release be performed?')
         booleanParam(name: 'test', defaultValue: true, description: 'Should tests be performed?')
         booleanParam(name: 'build', defaultValue: true, description: 'Should a full build/compress be performed?')
-
-        booleanParam(name: 'triggeredBySCMChange', defaultValue: false, description: 'Set to true by commit web hook.')
     }
     stages {
         stage('Initialize'){
@@ -44,10 +42,6 @@ pipeline {
 
                 script{
                     buildParams  << params;
-                    if (buildParams.triggeredBySCMChange){
-                        // only build up to test
-                        buildParams.build = false
-                    }
                     if (!buildParams.release){
                         return;
                     }
