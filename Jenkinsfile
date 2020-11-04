@@ -40,6 +40,8 @@ pipeline {
             steps {
                 echo "Pipeline triggered because ${params.cause}"
 
+                git branch: "3.x"
+
                 echo "Cleanup workspace"
                 sh 'mvn clean -P release,compress,rollout'
 
