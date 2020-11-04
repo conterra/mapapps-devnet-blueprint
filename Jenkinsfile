@@ -34,8 +34,6 @@ pipeline {
         booleanParam(name: 'testDeploy', defaultValue: true, description: 'Should a test deployment be performed?')
 
         booleanParam(name: 'triggeredBySCMChange', defaultValue: false, description: 'Set to true by commit web hook.')
-
-        gitParameter(branchFilter: 'origin/(.*)', defaultValue: '3.x', name: 'BRANCH', type: 'PT_BRANCH')
     }
     stages {
         stage('Initialize'){
