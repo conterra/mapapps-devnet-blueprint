@@ -111,7 +111,7 @@ pipeline {
                 echo "create rollout"
                 withCredentials([usernamePassword(credentialsId: CREDENTIAL_ID, passwordVariable: 'USER_PW', usernameVariable: 'USER_NAME'),
                                  usernamePassword(credentialsId: GITHUB_CREDENTIAL_ID, passwordVariable: 'GITHUB_USER_PW', usernameVariable: 'GITHUB_USER_NAME')]){
-                    sh "mvn deploy -P release -Dct-nexus.username=${USER_NAME} -Dct-nexus.password=${USER_PW} -Dusername=${GITHUB_USER_NAME} -Dpassword=${GITHUB_USER_PW}"
+                    sh "mvn deploy -P github-release -Dct-nexus.username=${USER_NAME} -Dct-nexus.password=${USER_PW} -Dusername=${GITHUB_USER_NAME} -Dpassword=${GITHUB_USER_PW}"
                 }
             }
         }
