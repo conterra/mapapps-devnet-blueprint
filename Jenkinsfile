@@ -6,7 +6,7 @@ def testStageWasExecute = false;
 
 def updateVersions(targetversion,pushChanges=false){
     echo "update versions in manifest.json files to ${targetversion}"
-    sh "mvn validate -P write-release-versions,commit-release-versions -Dreplace.target.version=${targetversion}"
+    sh "mvn validate -P write-release-versions -Dreplace.target.version=${targetversion}"
     echo "update versions in pom.xml files to ${targetversion}"
     sh "mvn versions:set -DnewVersion=${targetversion} -DgenerateBackupPoms=false"
     sh "mvn scm:checkin -DpushChanges=${pushChanges} -Dmessage=\"[update-version] to ${targetversion}\""
