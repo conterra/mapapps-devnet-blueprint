@@ -35,13 +35,13 @@ pipeline {
 
         booleanParam(name: 'triggeredBySCMChange', defaultValue: false, description: 'Set to true by commit web hook.')
 
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: '3.x', name: 'BRANCH', type: 'PT_BRANCH'
+        gitParameter(branchFilter: 'origin/(.*)', defaultValue: '3.x', name: 'BRANCH', type: 'PT_BRANCH')
     }
     stages {
         stage('Initialize'){
             steps {
                 echo "Pipeline triggered because ${params.cause}"
-                
+
                 echo "Cleanup workspace"
                 sh 'mvn clean -P release,compress,rollout'
 
