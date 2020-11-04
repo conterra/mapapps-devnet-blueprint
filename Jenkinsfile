@@ -121,9 +121,8 @@ pipeline {
                     if (!buildParams.release){
                         return;
                     }
-                    echo "Push SCM tag"
+                    echo "Update versions after release"
                     withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIAL_ID, passwordVariable: 'GITHUB_USER_PW', usernameVariable: 'GITHUB_USER_NAME')]){
-                        sh "mvn scm:tag -DpushChanges=true"
                         updateVersions(releaseParams['NEXT_DEV_VERSION'],true);
                     }
                 }
