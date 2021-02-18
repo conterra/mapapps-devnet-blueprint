@@ -2,6 +2,93 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.11.0] - [2021-02-18]
+
+### Changed
+
+- Support for map.apps 4.11.0
+
+- Change `mapapps.version` property in `./pom.xml`  to `4.11.0`
+- Change `ct.jsregistry.version` property in `./pom.xml`  to `1.4.0`
+- Change `ct.jsrt-test.version` property in `./pom.xml`  to `2.0.0`
+- Update `ct-mapapps-gulp-js` to `^0.5.13` (`package.json`)
+- Update splashscreen styles (see [MIGRATION.md](https://github.com/conterra/mapapps-4-developers/blob/master/MIGRATION.md)) for details. Relevant for non-customized splashscreens.
+
+## [4.10.1] - 2020-12-09
+
+### Changed
+
+- Support for map.apps 4.10.1
+
+## [4.10.0] - 2020-12-08
+
+### Changed
+
+- Support for map.apps 4.10.0
+
+- Change `mapapps.version` property in `./pom.xml`  to `4.10.0`
+- Change `ct.jsregistry.version` property in `./pom.xml`  to `1.3.10`
+- Change `nodeVersion` property in `./pom.xml`  to `v14.15.1`
+- Change `npmVersion` property in `./pom.xml`  to `6.14.9`
+- Update `@types/arcgis-js-api` to `4.17.0` (`package.json`)
+- Update `ct-mapapps-gulp-js` to `^0.5.5` (`package.json`)
+- Update `puppeteer` to `^5.5.0` (`package.json`)
+- Update `eslint-config-ct-prodeng` to `^1.1.16` (`package.json`)
+- Update `stylelint-config-ct-prodeng` to `1.0.3` (`package.json`)
+
+- improved documentation, e.g. [MIGRATION.md](./MIGRATION.md)
+- remove `optimizeCSS` goal from `./pom.xml`
+
+```xml
+<execution>
+    <id>optimize CSS</id>
+    <goals>
+        <goal>optimizeCSS</goal>
+    </goals>
+    <phase>compile</phase>
+    <configuration>
+        <cssFiles>
+            <includes>
+                <include>bundles/*/*/*.css</include>
+            </includes>
+            <excludes>
+                <exclude>**/themeSettings.css</exclude>
+            </excludes>
+        </cssFiles>
+    </configuration>
+</execution>
+```
+
+- add execution of `gulp compress` task to `compress` profile in `pom.xml`
+
+```xml
+<profile>
+    <id>compress</id>
+    <properties>
+        <gulp.task>compress</gulp.task>
+    </properties>
+    ...
+</profile>
+```
+
+- add `compress` task to `./gulpfile.js`
+
+```js
+gulp.task("compress",
+    gulp.series(
+        "copy-resources",
+        "themes-copy",
+        gulp.parallel(
+            "js-transpile",
+            gulp.series(
+                "themes-compile",
+                "themes-compress"
+            )
+        )
+    )
+);
+```
+
 ## [4.9.2] - 2020-10-06
 
 - Support for map.apps 4.9.2
