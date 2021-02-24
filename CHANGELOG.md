@@ -2,17 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.11.0] - [2021-02-18]
+## [4.11.1] - 2021-02-22
 
-### Changed
+- Support for map.apps 4.11.1
+- Change `mapapps.version` property in `./pom.xml`  to `4.11.1`
+- Change `ct.jsregistry.version` property in `./pom.xml`  to `1.4.1`
+- Update `ct-mapapps-gulp-js` to `^0.5.14` (`package.json`)
+- Update `@types/arcgis-js-api` to `4.18.0` (`package.json`)
+
+## [4.11.0] - 2021-02-17
 
 - Support for map.apps 4.11.0
-
 - Change `mapapps.version` property in `./pom.xml`  to `4.11.0`
 - Change `ct.jsregistry.version` property in `./pom.xml`  to `1.4.0`
 - Change `ct.jsrt-test.version` property in `./pom.xml`  to `2.0.0`
 - Update `ct-mapapps-gulp-js` to `^0.5.13` (`package.json`)
-- Update splashscreen styles (see [MIGRATION.md](https://github.com/conterra/mapapps-4-developers/blob/master/MIGRATION.md)) for details. Relevant for non-customized splashscreens.
+- Add `@conterra/ct-mapapps-typings` with version `~4.11.0` (`package.json`)
+- Update `@types/arcgis-js-api` to `4.18.0` (`package.json`)
+- Use `tsconfig.json` file from mapapps-4-developers 4.11.0 release.
+- Update splashscreen styles. If you have no customized splashscreen, update the default splashscreen by changing  your `init.css` and `index.html` file according to [this commit](https://github.com/conterra/mapapps-4-developers/commit/bef4b4d8669045a33fe8b40eef171f9194e291f7)
 
 ## [4.10.1] - 2020-12-09
 
