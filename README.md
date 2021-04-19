@@ -110,13 +110,33 @@ To execute the unit tests inside the project, run [http://localhost:9090/js/test
 
 ## Updating from older versions
 
+### from 4.11.0 to 4.11.1
+
+See [Changelog](./CHANGELOG.md#4111)
+
+### from 4.10.1 to 4.11.0
+
+See [Changelog](./CHANGELOG.md#4110)
+
+### from 4.10.0 to 4.10.1
+
+See [Changelog](./CHANGELOG.md#4100---2020-12-09)
+
+### from 4.9.2 to 4.10.0
+
+See [Changelog](./CHANGELOG.md#4100---2020-12-08)
+
+### from 4.9.1 to 4.9.2
+
+See [Changelog](./CHANGELOG.md#492---2020-10-06)
+
 ### from 4.9.0 to 4.9.1
 
 See [Changelog](./CHANGELOG.md#491---2020-09-04)
 
-### from 4.8.4 to 4.9.0	### from 4.8.4 to 4.9.0
+### from 4.8.4 to 4.9.0
 
-See [Changelog](./CHANGELOG.md#490---2020-08-18)	See [Changelog](./CHANGELOG.md#490---2020-08-18)
+See [Changelog](./CHANGELOG.md#490---2020-08-18)
 
 ### from 4.8.3 to 4.8.4
 
