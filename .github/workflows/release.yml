@@ -5,7 +5,8 @@ on:
 
 env:
   ARTIFACT_ID: mapapps-remote-project-blueprint
-  VERSION: 4.11.1-SNAPSHOT
+  RELEASE_VERSION: 4.11.1
+  NEXT_DEV_VERSION: 4.11.2-SNAPSHOT
 
 jobs:
   build:
@@ -78,6 +79,15 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - id: write_release_versions_to_manifest
+        name: Update versions in manifest.json files to ${{ env.RELEASE_VERSION }}
+        run: mvn validate -P write-release-versions -Dreplace.target.version=${{ env.RELEASE_VERSION }}
+      - id: write_release_versions_to_pom
+        name: Update versions in pom.xml files to ${{ env.RELEASE_VERSION }}
+        run: mvn versions:set -DnewVersion=${{ env.RELEASE_VERSION }} -DgenerateBackupPoms=false
+      - id: check_in_release_versions
+        name: Write release versions
+        run: mvn scm:checkin -DpushChanges=false -Dmessage=\"[update-version] to ${{ env.RELEASE_VERSION }}\"
       - id: tests
         name: Run tests
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
@@ -90,5 +100,14 @@ jobs:
           artifacts: "target/${{ env.ARTIFACT_ID }}-bundle.zip,target/${{ env.ARTIFACT_ID }}-sample-app.zip"
           preRelease: true
           allowUpdates: true
-          tag: ${{ env.VERSION }}
+          tag: ${{ env.RELEASE_VERSION }}
           token: ${{ secrets.RELEASE_TOKEN }}
+      - id: write_dev_versions_to_manifest
+        name: Update versions in manifest.json files to ${{ env.NEXT_DEV_VERSION }}
+        run: mvn validate -P write-release-versions -Dreplace.target.version=${{ env.NEXT_DEV_VERSION }}
+      - id: write_dev_versions_to_pom
+        name: Update versions in pom.xml files to ${{ env.NEXT_DEV_VERSION }}
+        run: mvn versions:set -DnewVersion=${{ env.NEXT_DEV_VERSION }} -DgenerateBackupPoms=false
+      - id: check_in_dev_versions
+        name: Write dev versions
+        run: mvn scm:checkin -DpushChanges=true -Dmessage=\"[update-version] to ${{ env.NEXT_DEV_VERSION }}\"
