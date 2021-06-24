@@ -84,11 +84,6 @@ jobs:
       - id: project
         name: Extract Maven project version
         run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-      - id: semvers
-        name: 'Get next minor version'
-        uses: "WyriHaximus/github-action-next-semvers@v1"
-        with:
-          version: ${{ steps.previoustag.outputs.tag }}
       - id: tests
         name: Run tests
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
