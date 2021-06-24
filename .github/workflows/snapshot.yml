@@ -19,10 +19,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-#       - name: Setup Maven
-#         uses: byu-oit/github-action-setup-maven@v1
-#         with:
-#           maven-master-password: ${{ secrets.MAVEN_MASTER_PASSWORD }}
       - name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v18
         with:
