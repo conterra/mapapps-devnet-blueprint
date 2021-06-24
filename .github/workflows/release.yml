@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
 
 env:
-  ARTIFACT_ID: mapapps-remote-project-blueprint
   RELEASE_VERSION: 4.11.1
   NEXT_DEV_VERSION: 4.11.2-SNAPSHOT
 
@@ -79,6 +78,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - id: project_artifact_id
+        name: Extract Maven project artifactId
+        run: echo ::set-output name=artifactId::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.artifactId}' --non-recursive exec:exec)
       - id: write_release_versions_to_manifest
         name: Update versions in manifest.json files to ${{ env.RELEASE_VERSION }}
         run: mvn validate -P write-release-versions -Dreplace.target.version=${{ env.RELEASE_VERSION }}
@@ -97,8 +99,8 @@ jobs:
       - id: release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "target/${{ env.ARTIFACT_ID }}-bundle.zip,target/${{ env.ARTIFACT_ID }}-sample-app.zip"
-          preRelease: true
+          artifacts: "target/${{ steps.project_artifact_id.outputs.artifactId }}-bundle.zip,target/${{ steps.project_artifact_id.outputs.artifactId }}-sample-app.zip"
+          preRelease: false
           allowUpdates: true
           tag: ${{ env.RELEASE_VERSION }}
           token: ${{ secrets.RELEASE_TOKEN }}

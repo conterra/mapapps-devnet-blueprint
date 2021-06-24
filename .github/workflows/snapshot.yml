@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  ARTIFACT_ID: mapapps-remote-project-blueprint
-  VERSION: 4.11.1-SNAPSHOT
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -81,9 +77,12 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - id: project
+      - id: project_version
         name: Extract Maven project version
         run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+      - id: project_artifact_id
+        name: Extract Maven project artifactId
+        run: echo ::set-output name=artifactId::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.artifactId}' --non-recursive exec:exec)
       - id: tests
         name: Run tests
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
@@ -93,8 +92,8 @@ jobs:
       - id: release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "target/${{ env.ARTIFACT_ID }}-bundle.zip,target/${{ env.ARTIFACT_ID }}-sample-app.zip"
+          artifacts: "target/${{ steps.project_artifact_id.outputs.artifactId }}-bundle.zip,target/${{ steps.project_artifact_id.outputs.artifactId }}-sample-app.zip"
           preRelease: true
           allowUpdates: true
-          tag: ${{ steps.project.outputs.version }}
+          tag: ${{ steps.project_version.outputs.version }}
           token: ${{ secrets.RELEASE_TOKEN }}
