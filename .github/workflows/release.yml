@@ -2,10 +2,17 @@ name: release
 
 on:
   workflow_dispatch:
+    inputs:
+      releaseVersion:
+        description: "Release version"
+        required: true
+      nextDevVersion:
+        description: "Next SNAPSHOT version"
+        required: true
 
 env:
-  RELEASE_VERSION: 4.11.1
-  NEXT_DEV_VERSION: 4.11.2-SNAPSHOT
+  RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
+  NEXT_DEV_VERSION: ${{ github.event.inputs.nextDevVersion }}
 
 jobs:
   build:
