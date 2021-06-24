@@ -26,6 +26,11 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - id: git
+        name: Set GIT username and email
+        run: |
+          git config --global user.email "${{ secrets.GIT_MAIL }}"
+          git config --global user.name "${{ secrets.GIT_USER }}"
       - id: create_settings_xml
         name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v18
@@ -88,15 +93,12 @@ jobs:
       - id: project_artifact_id
         name: Extract Maven project artifactId
         run: echo ::set-output name=artifactId::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.artifactId}' --non-recursive exec:exec)
-      - id: write_release_versions_to_manifest
-        name: Update versions in manifest.json files to ${{ env.RELEASE_VERSION }}
-        run: mvn validate -P write-release-versions -Dreplace.target.version=${{ env.RELEASE_VERSION }}
-      - id: write_release_versions_to_pom
-        name: Update versions in pom.xml files to ${{ env.RELEASE_VERSION }}
-        run: mvn versions:set -DnewVersion=${{ env.RELEASE_VERSION }} -DgenerateBackupPoms=false
-      - id: check_in_release_versions
-        name: Write release versions
-        run: mvn scm:checkin -DpushChanges=false -Dmessage=\"[update-version] to ${{ env.RELEASE_VERSION }}\" -Dscm.username=${{ github.actor }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
+      - id: write_release_versions
+        name: Update versions to ${{ env.RELEASE_VERSION }}
+        run: |
+          mvn validate -P write-release-versions -Dreplace.target.version=${{ env.RELEASE_VERSION }}
+          mvn versions:set -DnewVersion=${{ env.RELEASE_VERSION }} -DgenerateBackupPoms=false
+          mvn scm:checkin -DpushChanges=false -Dmessage=\"[update-version] to ${{ env.RELEASE_VERSION }}\" -Dscm.username=${{ secrets.GIT_USER }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
       - id: tests
         name: Run tests
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
@@ -111,12 +113,9 @@ jobs:
           allowUpdates: true
           tag: ${{ env.RELEASE_VERSION }}
           token: ${{ secrets.RELEASE_TOKEN }}
-      - id: write_dev_versions_to_manifest
-        name: Update versions in manifest.json files to ${{ env.NEXT_DEV_VERSION }}
-        run: mvn validate -P write-release-versions -Dreplace.target.version=${{ env.NEXT_DEV_VERSION }}
-      - id: write_dev_versions_to_pom
-        name: Update versions in pom.xml files to ${{ env.NEXT_DEV_VERSION }}
-        run: mvn versions:set -DnewVersion=${{ env.NEXT_DEV_VERSION }} -DgenerateBackupPoms=false
-      - id: check_in_dev_versions
-        name: Write dev versions
-        run: mvn scm:checkin -DpushChanges=true -Dmessage=\"[update-version] to ${{ env.NEXT_DEV_VERSION }}\" -Dscm.username=${{ github.actor }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
+      - id: write_dev_versions
+        name: Update versions to ${{ env.NEXT_DEV_VERSION }}
+        run: |
+          mvn validate -P write-release-versions -Dreplace.target.version=${{ env.NEXT_DEV_VERSION }}
+          mvn versions:set -DnewVersion=${{ env.NEXT_DEV_VERSION }} -DgenerateBackupPoms=false
+          mvn scm:checkin -DpushChanges=true -Dmessage=\"[update-version] to ${{ env.NEXT_DEV_VERSION }}\" -Dscm.username=${{ secrets.GIT_USER }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
