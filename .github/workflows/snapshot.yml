@@ -1,4 +1,4 @@
-name: SNAPSHOT
+name: snapshot
 
 on:
   push:
