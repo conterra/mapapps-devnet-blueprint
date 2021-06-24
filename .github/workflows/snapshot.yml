@@ -69,6 +69,7 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Build with Maven
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
   build:
