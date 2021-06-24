@@ -1,4 +1,4 @@
-name: release
+name: release ${{ env.RELEASE_VERSION }}
 
 on:
   workflow_dispatch:
@@ -32,7 +32,7 @@ jobs:
           git config --global user.email "${{ secrets.GIT_MAIL }}"
           git config --global user.name "${{ secrets.GIT_USER }}"
       - id: create_settings_xml
-        name: maven-settings-xml-action
+        name: "Create settings.xml"
         uses: whelk-io/maven-settings-xml-action@v18
         with:
           repositories: >
@@ -98,7 +98,7 @@ jobs:
         run: |
           mvn validate -P write-release-versions -Dreplace.target.version=${{ env.RELEASE_VERSION }}
           mvn versions:set -DnewVersion=${{ env.RELEASE_VERSION }} -DgenerateBackupPoms=false
-          mvn scm:checkin -DpushChanges=false -Dmessage=\"[update-version] to ${{ env.RELEASE_VERSION }}\" -Dscm.username=${{ secrets.GIT_USER }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
+          mvn scm:checkin -DpushChanges=false -Dmessage="[update-version] to ${{ env.RELEASE_VERSION }}" -Dscm.username=${{ secrets.GIT_USER }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
       - id: tests
         name: Run tests
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
@@ -106,6 +106,7 @@ jobs:
         name: Publish to Nexus
         run: mvn deploy -Pcompress -Dmaven.test.skip.exec=true -Ddist.releases.id=${{ secrets.NEXUS_ID }} -Ddist.releases.url=${{ secrets.NEXUS_URL_RELEASE }} -Ddist.snapshots.id=${{ secrets.NEXUS_ID }} -Ddist.snapshots.url=${{ secrets.NEXUS_URL_SNAPSHOTS }}
       - id: release
+        name: Create GitHub release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "target/${{ steps.project_artifact_id.outputs.artifactId }}-bundle.zip,target/${{ steps.project_artifact_id.outputs.artifactId }}-sample-app.zip"
@@ -118,4 +119,4 @@ jobs:
         run: |
           mvn validate -P write-release-versions -Dreplace.target.version=${{ env.NEXT_DEV_VERSION }}
           mvn versions:set -DnewVersion=${{ env.NEXT_DEV_VERSION }} -DgenerateBackupPoms=false
-          mvn scm:checkin -DpushChanges=true -Dmessage=\"[update-version] to ${{ env.NEXT_DEV_VERSION }}\" -Dscm.username=${{ secrets.GIT_USER }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
+          mvn scm:checkin -DpushChanges=true -Dmessage="[update-version] to ${{ env.NEXT_DEV_VERSION }}" -Dscm.username=${{ secrets.GIT_USER }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
