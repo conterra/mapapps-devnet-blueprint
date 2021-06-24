@@ -1,4 +1,4 @@
-name: release
+name: release ${{ github.event.inputs.releaseVersion }}
 
 on:
   workflow_dispatch:
@@ -111,7 +111,9 @@ jobs:
         with:
           artifacts: "target/${{ steps.project_artifact_id.outputs.artifactId }}-bundle.zip,target/${{ steps.project_artifact_id.outputs.artifactId }}-sample-app.zip"
           preRelease: false
+          bodyFile: "RELEASE.md"
           allowUpdates: true
+          replacesArtifacts: true
           tag: ${{ env.RELEASE_VERSION }}
           token: ${{ secrets.RELEASE_TOKEN }}
       - id: write_dev_versions

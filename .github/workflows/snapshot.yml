@@ -95,6 +95,8 @@ jobs:
         with:
           artifacts: "target/${{ steps.project_artifact_id.outputs.artifactId }}-bundle.zip,target/${{ steps.project_artifact_id.outputs.artifactId }}-sample-app.zip"
           preRelease: true
+          bodyFile: "RELEASE.md"
           allowUpdates: true
+          replacesArtifacts: true
           tag: ${{ steps.project_version.outputs.version }}
           token: ${{ secrets.RELEASE_TOKEN }}
