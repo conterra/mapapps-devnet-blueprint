@@ -6,12 +6,13 @@ on:
   pull_request:
     branches: [ actions ]
 
+env:
+  ARTIFACT_ID: mapapps-remote-project-blueprint
+  VERSION: 4.11.1-SNAPSHOT
+
 jobs:
-  build:
+  init:
     runs-on: ubuntu-latest
-    env:
-      ARTIFACT_ID: mapapps-remote-project-blueprint
-      VERSION: 4.11.1-SNAPSHOT
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -64,8 +65,14 @@ jobs:
                 "url": "${{ secrets.NEXUS_URL }}"
               }
             ]
-#      - name: Build with Maven
-#        run: mvn clean install -Pcompress --file pom.xml
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build with Maven
+        run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
+  build:
+    runs-on: ubuntu-latest
+    steps:
       - name: Publish to Nexus
         run: mvn deploy -Pcompress -Dmaven.test.skip.exec=true -Ddist.releases.id=${{ secrets.NEXUS_ID }} -Ddist.releases.url=${{ secrets.NEXUS_URL_RELEASE }} -Ddist.snapshots.id=${{ secrets.NEXUS_ID }} -Ddist.snapshots.url=${{ secrets.NEXUS_URL_SNAPSHOTS }}
       - uses: ncipollo/release-action@v1
@@ -74,4 +81,4 @@ jobs:
           preRelease: true
           allowUpdates: true
           tag: ${{ env.VERSION }}
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.RELEASE_TOKEN }}
