@@ -11,7 +11,7 @@ env:
   VERSION: 4.11.1-SNAPSHOT
 
 jobs:
-  init:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -66,11 +66,13 @@ jobs:
               }
             ]
   tests:
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Build with Maven
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
   build:
+    needs: tests
     runs-on: ubuntu-latest
     steps:
       - name: Publish to Nexus
