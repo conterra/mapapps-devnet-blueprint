@@ -81,11 +81,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - id: previoustag
-        name: 'Get Previous tag'
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
-        with:
-          fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
+      - id: project
+        name: Extract Maven project version
+        run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
       - id: semvers
         name: 'Get next minor version'
         uses: "WyriHaximus/github-action-next-semvers@v1"
@@ -103,5 +101,5 @@ jobs:
           artifacts: "target/${{ env.ARTIFACT_ID }}-bundle.zip,target/${{ env.ARTIFACT_ID }}-sample-app.zip"
           preRelease: true
           allowUpdates: true
-          tag: ${{ steps.semvers.outputs.patch }}-SNAPSHOT
+          tag: ${{ steps.project.outputs.version }}
           token: ${{ secrets.RELEASE_TOKEN }}
