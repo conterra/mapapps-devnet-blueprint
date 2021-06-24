@@ -22,7 +22,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - id: create settings.xml
+      - id: create_settings_xml
         name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v18
         with:
@@ -71,7 +71,7 @@ jobs:
       - id: tests
         name: Build with Maven
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
-      - id: nexus deployment
+      - id: nexus_deployment
         name: Publish to Nexus
         run: mvn deploy -Pcompress -Dmaven.test.skip.exec=true -Ddist.releases.id=${{ secrets.NEXUS_ID }} -Ddist.releases.url=${{ secrets.NEXUS_URL_RELEASE }} -Ddist.snapshots.id=${{ secrets.NEXUS_ID }} -Ddist.snapshots.url=${{ secrets.NEXUS_URL_SNAPSHOTS }}
       - id: release
