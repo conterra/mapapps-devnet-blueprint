@@ -11,7 +11,7 @@ env:
   VERSION: 4.11.1-SNAPSHOT
 
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -65,17 +65,9 @@ jobs:
                 "url": "${{ secrets.NEXUS_URL }}"
               }
             ]
-  tests:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@v2
       - name: Build with Maven
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
-  build:
-    needs: tests
-    runs-on: ubuntu-latest
-    steps:
       - name: Publish to Nexus
         run: mvn deploy -Pcompress -Dmaven.test.skip.exec=true -Ddist.releases.id=${{ secrets.NEXUS_ID }} -Ddist.releases.url=${{ secrets.NEXUS_URL_RELEASE }} -Ddist.snapshots.id=${{ secrets.NEXUS_ID }} -Ddist.snapshots.url=${{ secrets.NEXUS_URL_SNAPSHOTS }}
       - uses: ncipollo/release-action@v1
