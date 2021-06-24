@@ -1,4 +1,4 @@
-name: release ${{ env.RELEASE_VERSION }}
+name: release
 
 on:
   workflow_dispatch:
