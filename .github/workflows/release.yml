@@ -96,7 +96,7 @@ jobs:
         run: mvn versions:set -DnewVersion=${{ env.RELEASE_VERSION }} -DgenerateBackupPoms=false
       - id: check_in_release_versions
         name: Write release versions
-        run: mvn scm:checkin -DpushChanges=false -Dmessage=\"[update-version] to ${{ env.RELEASE_VERSION }}\"
+        run: mvn scm:checkin -DpushChanges=false -Dmessage=\"[update-version] to ${{ env.RELEASE_VERSION }}\" -Dscm.username=${{ github.actor }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
       - id: tests
         name: Run tests
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
@@ -119,4 +119,4 @@ jobs:
         run: mvn versions:set -DnewVersion=${{ env.NEXT_DEV_VERSION }} -DgenerateBackupPoms=false
       - id: check_in_dev_versions
         name: Write dev versions
-        run: mvn scm:checkin -DpushChanges=true -Dmessage=\"[update-version] to ${{ env.NEXT_DEV_VERSION }}\"
+        run: mvn scm:checkin -DpushChanges=true -Dmessage=\"[update-version] to ${{ env.NEXT_DEV_VERSION }}\" -Dscm.username=${{ github.actor }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
