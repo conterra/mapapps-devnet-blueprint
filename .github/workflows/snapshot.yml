@@ -16,7 +16,10 @@ jobs:
         name: Cache node modules
         uses: actions/cache@v2
         with:
-            path: '**/node_modules'
+            path: |
+                '**/node'
+                '**/node_modules'
+                ~/.m2/repository
             key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package.json') }}
       - id: setup
         name: Set up JDK 11
