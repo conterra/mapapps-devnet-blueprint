@@ -791,42 +791,6 @@
             </build>
         </profile>
         <profile>
-            <id>github-release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>de.jutzig</groupId>
-                        <artifactId>github-release-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>github-upload</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>release</goal>
-                                </goals>
-                                <configuration>
-                                    <tag>${project.version}</tag>
-                                    <artifact>${project.build.directory}/${project.artifactId}-${project.version}.jar
-                                    </artifact>
-                                    <fileSets>
-                                        <fileSet>
-                                            <directory>${project.build.directory}</directory>
-                                            <includes>
-                                                <include>${project.artifactId}-bundle.zip</include>
-                                                <include>${project.artifactId}-sample-app.zip</include>
-                                                <!--<include>${project.artifactId}*.tar.gz</include>-->
-                                                <include>${project.artifactId}*.zip</include>
-                                            </includes>
-                                        </fileSet>
-                                    </fileSets>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>write-release-versions</id>
             <properties>
                 <replace.source.version>${project.version}</replace.source.version>
