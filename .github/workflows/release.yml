@@ -20,6 +20,15 @@ jobs:
     steps:
       - id: checkout
         uses: actions/checkout@v2
+      - id: cache-node
+        name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            '**/node'
+            '**/node_modules'
+            ~/.m2/repository
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package.json') }}
       - id: setup
         name: Set up JDK 11
         uses: actions/setup-java@v2
@@ -76,20 +85,7 @@ jobs:
                 "mirrorOf": "central",
                 "url": "${{ secrets.NEXUS_URL }}"
               }
-            ]
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: |
-            ~/.node
-            ~/.node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+                ]
       - id: project_artifact_id
         name: Extract Maven project artifactId
         run: echo ::set-output name=artifactId::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.artifactId}' --non-recursive exec:exec)
