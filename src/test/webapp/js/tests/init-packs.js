@@ -13,20 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { assert } from "chai";
-import module from "module";
-import Hello from "../Hello";
-
-let createHello = function (msg) {
-    let hello = new Hello();
-    hello._properties = {message: msg};
-    hello.activate();
-    return hello;
-};
-
-describe(module.id, function(){
-    it("expect properties.message is returned by getMessage", function () {
-        assert.equal(createHello("hello world").getMessage(), "hello world");
-    });
-});
+if (require.packs["@vue/test-utils"]) {
+    require.packs["@vue/test-utils"].main = "dist/vue-test-utils.umd";
+}
+if (require.packs["chai"]) {
+    require.packs["chai"].main = "chai";
+}

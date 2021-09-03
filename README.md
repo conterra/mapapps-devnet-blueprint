@@ -4,8 +4,8 @@ This project is a blueprint for starting a con terra developer network bundle.
 
 ## Requirements
 
-* map.apps 4.11.1
-* All resources from `map.apps-VERSION/sdk/m2-repository` need to be copied manually to your local Maven repository (e.g. `%UserProfile%/.m2/repository` for Windows, `~/.m2/repository` for MacOS).
+-   map.apps 4.12.0
+-   All resources from `map.apps-VERSION/sdk/m2-repository` need to be copied manually to your local Maven repository (e.g. `%UserProfile%/.m2/repository` for Windows, `~/.m2/repository` for MacOS).
 
 ## Usage
 
@@ -65,9 +65,9 @@ The Jetty server is then available at [http://localhost:9090](http://localhost:9
 By appending `-Denv=dev -Dlocal.configfile=./build.properties` to any Maven execution the development mode is activated.
 This means:
 
-* Node.js and NPM are not installed
-* the `watch-all` profile is activated
-* the `build.properties` file is loaded
+-   Node.js and NPM are not installed
+-   the `watch-all` profile is activated
+-   the `build.properties` file is loaded
 
 To enforce the installation of Node.js and NPM execute:
 
@@ -94,19 +94,46 @@ mvn clean install -P compress
 To upload your apps and bundles after compression to an existing map.apps installation activate the `upload` profile:
 
 ```sh
-mvn clean install -P compress,upload
+mvn clean install -P compress,upload -Dmapapps.user=xyz -Dmapapps.pw=abc
 ```
+
+If map.apps is running behind an IIS with Integrated Windows authentication then do not configure `-Dmapapps.user` and `-Dmapapps.pw`.
+Instead configure `-Dmapapps.useChunkedRequestEncoding=true` and `-Djdk.http.ntlm.transparentAuth=trustedHosts` (or `-Djdk.http.ntlm.transparentAuth=allHosts`) to ensure the user's Windows credentials are used.
 
 ### Running the tests
 
 To execute the unit tests inside the project, run [http://localhost:9090/js/tests/runTests.html](http://localhost:9090/js/tests/runTests.html).
 
+Or use the test lifecycle:
+
+```sh
+mvn clean test -P run-js-tests,include-mapapps-deps
+```
+
 > If you run the project in 'remote project' mode, you will have to edit the `test-init.js` file located in the `/src/test/webapp/js/tests/` folder.
+
+### The 'sample_camera' bundle
+
+There is a sample bundle in this project called "sample_camera" which demonstrates the following aspects of developing for map.apps 4:
+
+-   Interaction with ESRI map
+-   Use of Binding (e.g. with Accessor)
+-   Building widgets with Vue.js and Vuetify.js
+
+### The 'theme-custom' bundle
+
+-   Sample of minimum fileset needed to create a custom theme.
+-   Make sure bundle is loaded instead of theme-everlasting in sample app
+-   When renaming/copying the 'theme-custom' bundle to e.g. `theme-[projectname]` make sure to also make the corresponding changes to the following files:
+
+    -   `gulpfile.js`
+    -   `theme-name/manifest.json`
+    -   `theme-name/styles/styles.less`
 
 ### Build Process
 
-* The gulpfile that describes the build process for map.apps themes can be found in the root directory: `/gulpfile.js`
-* The `/package.json` file contains the version numbers for the required dependencies for the gulp build process.
+-   The gulpfile that describes the build process for map.apps themes can be found in the root directory: `/gulpfile.js`
+-   The `/package.json` file contains the version numbers for the required dependencies for the gulp build process.
 
 ## Updating from older versions
 

@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.12.0] - 2021-08-31
+
+-   Support for map.apps 4.12.0
+-   Update `mapapps.version` property in `./pom.xml` to `4.12.0`
+-   Update `ct.jsregistry.version` property in `./pom.xml` to `1.4.3`
+-   Update `ct.jsrt-test.version` property in `./pom.xml` to `2.0.2`
+-   Update `@conterra/ct-mapapps-typings` to `~4.12.0` (`package.json`)
+-   Update `@types/arcgis-js-api` to `4.20.0` (`package.json`)
+-   Update `ct-mapapps-gulp-js` to `^0.5.27` (`package.json`)
+-   Update `vue-template-compiler` to `2.6.14` (`package.json`)
+-   Update `puppeteer` to `^10.0.0` (`package.json`)
+-   Add `"@conterra/mapapps-mocha-runner": "^1.0.0"` (`package.json`)
+-   Add `"chai": "^4.3.4"` (`package.json`)
+-   Add `"mocha": "^9.0.0"` (`package.json`)
+-   Changed default test-runner from intern-js to mocha. (see [MIGRATION.md](./MIGRATION.md)) for details.
+
 ## [4.11.1] - 2021-02-22
 
 - Support for map.apps 4.11.1
