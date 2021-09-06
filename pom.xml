@@ -181,11 +181,6 @@
                     <version>2.5.3</version>
                 </plugin>
                 <plugin>
-                    <groupId>de.jutzig</groupId>
-                    <artifactId>github-release-plugin</artifactId>
-                    <version>1.4.0</version>
-                </plugin>
-                <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
@@ -524,10 +519,9 @@
                 <configuration>
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <preparationGoals>clean</preparationGoals>
-                    <releaseProfiles>compress,github-release</releaseProfiles>
+                    <releaseProfiles>compress</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <!-- for git release plugin-->
-                    <arguments>-Dusername=${scm.username} -Dpassword=${scm.password}</arguments>
                     <username>${scm.username}</username>
                     <password>${scm.password}</password>
                 </configuration>
