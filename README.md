@@ -2,6 +2,10 @@
 
 This project is a blueprint for starting a con terra developer network bundle.
 
+## Build
+
+![example workflow](https://github.com/conterra/mapapps-remote-project-blueprint/actions/workflows/devnet-bundle-snapshot.yml/badge.svg)
+
 ## Requirements
 
 -   map.apps 4.12.0
