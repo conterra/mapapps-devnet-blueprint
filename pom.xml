@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-remote-project-blueprint</artifactId>
-    <version>4.12.1-SNAPSHOT</version>
+    <version>4.12.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -548,7 +548,7 @@
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
-        <mapapps.version>4.12.1</mapapps.version>
+        <mapapps.version>4.12.2</mapapps.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
         <!-- java lib versions -->

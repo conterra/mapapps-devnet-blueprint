@@ -8,7 +8,7 @@ This project is a blueprint for starting a con terra developer network bundle.
 
 ## Requirements
 
--   map.apps 4.12.0
+-   map.apps 4.12.2
 -   All resources from `map.apps-VERSION/sdk/m2-repository` need to be copied manually to your local Maven repository (e.g. `%UserProfile%/.m2/repository` for Windows, `~/.m2/repository` for MacOS).
 
 ## Usage
@@ -140,6 +140,18 @@ There is a sample bundle in this project called "sample_camera" which demonstrat
 -   The `/package.json` file contains the version numbers for the required dependencies for the gulp build process.
 
 ## Updating from older versions
+
+### from 4.12.1 to 4.12.2
+
+See [Changelog](./CHANGELOG.md)
+
+### from 4.12.0 to 4.12.1
+
+See [Changelog](./CHANGELOG.md#4121---10112021)
+
+### from 4.11.1 to 4.12.0
+
+See [Changelog](./CHANGELOG.md#4120---2021-08-31)
 
 ### from 4.11.0 to 4.11.1
 
