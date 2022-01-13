@@ -199,15 +199,6 @@
                     <artifactId>ct-jsrt-test-maven-plugin</artifactId>
                     <version>${ct.jsrt-test.version}</version>
                 </plugin>
-                <plugin>
-                    <artifactId>maven-scm-plugin</artifactId>
-                    <version>1.10.0</version>
-                    <configuration>
-                        <tag>${project.version}</tag>
-                        <username>${scm.username}</username>
-                        <password>${scm.password}</password>
-                    </configuration>
-                </plugin>
             </plugins>
         </pluginManagement>
         <sourceDirectory>src/main/js</sourceDirectory>
@@ -525,13 +516,6 @@
             </plugin>
         </plugins>
     </build>
-    <scm>
-        <connection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</connection>
-        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git
-        </developerConnection>
-        <url>https://github.com/conterra/mapapps-remote-project-blueprint</url>
-        <tag>HEAD</tag>
-    </scm>
     <distributionManagement>
         <repository>
             <id>${dist.releases.id}</id>
