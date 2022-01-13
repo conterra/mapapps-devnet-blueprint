@@ -576,11 +576,6 @@
         <skip.apps.upload>false</skip.apps.upload>
         <!-- enable this if "upload" profile should pre-optimize apps -->
         <triggerPreOptimization>false</triggerPreOptimization>
-
-        <!-- required for release build -->
-        <scm.push>false</scm.push>
-        <scm.username>${env.GITHUB_USER_NAME}</scm.username>
-        <scm.password>${env.GITHUB_USER_PW}</scm.password>
     </properties>
     <profiles>
         <profile>
