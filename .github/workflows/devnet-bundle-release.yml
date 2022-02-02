@@ -108,6 +108,8 @@ jobs:
           mvn validate -P write-release-versions -Dreplace.target.version=${{ env.RELEASE_VERSION }}
           mvn versions:set -DnewVersion=${{ env.RELEASE_VERSION }} -DgenerateBackupPoms=false
           mvn scm:checkin -DpushChanges=false -Dmessage="[update-version] to ${{ env.RELEASE_VERSION }}" -Dscm.username=${{ secrets.GIT_USER }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
+      - id: checkout_new
+        uses: actions/checkout@v2
       - id: tests
         name: Run tests
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
