@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-remote-project-blueprint</artifactId>
-    <version>4.12.4-SNAPSHOT</version>
+    <version>4.12.3-3</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
