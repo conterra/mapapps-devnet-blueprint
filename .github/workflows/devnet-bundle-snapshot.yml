@@ -12,9 +12,9 @@ jobs:
     steps:
      - uses: conterra/devnet-bundle-snapshot-action@v1.0.0
        with:
-         NEXUS_ID: ${{secrets.NEXUS_ID}}
-         NEXUS_USER: ${{secrets.NEXUS_USER}}
-         NEXUS_USER_PW: ${{secrets.NEXUS_USER_PW}}
-         NEXUS_URL_RELEASE: ${{secrets.NEXUS_URL_RELEASE}}
-         NEXUS_URL_SNAPSHOTS: ${{secrets.NEXUS_URL_SNAPSHOTS}}
-         RELEASE_TOKEN: ${{secrets.RELEASE_TOKEN}}
+         nexus_id: ${{secrets.NEXUS_ID}}
+         nexus_user: ${{secrets.NEXUS_USER}}
+         nexus_user_pw: ${{secrets.NEXUS_USER_PW}}
+         nexus_url_release: ${{secrets.NEXUS_URL_RELEASE}}
+         nexus_url_snapshots: ${{secrets.NEXUS_URL_SNAPSHOTS}}
+         release_token: ${{secrets.RELEASE_TOKEN}}
