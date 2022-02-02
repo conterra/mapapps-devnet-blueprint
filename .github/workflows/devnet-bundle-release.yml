@@ -107,6 +107,7 @@ jobs:
             ${{ runner.os }}-
 
   create_release:
+    needs: [write_release_versions]
     runs-on: ubuntu-latest
     steps:
       - id: checkout
