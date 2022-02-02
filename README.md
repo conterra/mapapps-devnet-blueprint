@@ -8,7 +8,7 @@ This project is a blueprint for starting a con terra developer network bundle.
 
 ## Requirements
 
--   map.apps 4.12.2
+-   map.apps 4.12.3
 -   All resources from `map.apps-VERSION/sdk/m2-repository` need to be copied manually to your local Maven repository (e.g. `%UserProfile%/.m2/repository` for Windows, `~/.m2/repository` for MacOS).
 
 ## Usage
