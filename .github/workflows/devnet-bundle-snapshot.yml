@@ -1,4 +1,4 @@
-name: devnet-bundle-snapshot
+name: devnet-bundle-snapshot2
 
 on:
   push:
