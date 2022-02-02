@@ -11,3 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: conterra/devnet-bundle-snapshot-action@v1.0.0
+       with:
+         NEXUS_ID: ${{secrets.NEXUS_ID}}
+         NEXUS_USER: ${{secrets.NEXUS_USER}}
+         NEXUS_USER_PW: ${{secrets.NEXUS_USER_PW}}
+         NEXUS_URL_RELEASE: ${{secrets.NEXUS_URL_RELEASE}}
+         NEXUS_URL_SNAPSHOTS: ${{secrets.NEXUS_URL_SNAPSHOTS}}
+         RELEASE_TOKEN: ${{secrets.RELEASE_TOKEN}}
