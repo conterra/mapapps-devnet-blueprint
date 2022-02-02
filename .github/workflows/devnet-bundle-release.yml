@@ -110,6 +110,9 @@ jobs:
           mvn scm:checkin -DpushChanges=false -Dmessage="[update-version] to ${{ env.RELEASE_VERSION }}" -Dscm.username=${{ secrets.GIT_USER }} -Dscm.password=${{ secrets.RELEASE_TOKEN }}
       - id: checkout_new
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - run: git checkout HEAD^
       - id: tests
         name: Run tests
         run: mvn prepare-package -Prun-js-tests,include-mapapps-deps
