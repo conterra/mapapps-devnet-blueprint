@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-     - uses: conterra/devnet-bundle-snapshot-action@v1.0.0
+     - uses: conterra/devnet-bundle-snapshot-action@v1
        with:
          nexus_id: ${{secrets.NEXUS_ID}}
          nexus_user: ${{secrets.NEXUS_USER}}
