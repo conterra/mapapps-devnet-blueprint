@@ -27,3 +27,4 @@ jobs:
          git_user: ${{secrets.GIT_USER}}
          release_version: ${{ github.event.inputs.releaseVersion }}
          next_dev_version: ${{ github.event.inputs.nextDevVersion }}
+         ms_teams_webhook_uri: ${{secrets.MS_TEAMS_WEBHOOK_URI}}
