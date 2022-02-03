@@ -14,7 +14,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-     - uses: conterra/devnet-bundle-release@v1.0.0
+     - uses: conterra/devnet-bundle-release-action@v1.0.0
        with:
-         releaseVersion: ${{ github.event.inputs.releaseVersion }}
-         nextDevVersion: ${{ github.event.inputs.nextDevVersion }}
+         nexus_id: ${{secrets.NEXUS_ID}}
+         nexus_user: ${{secrets.NEXUS_USER}}
+         nexus_user_pw: ${{secrets.NEXUS_USER_PW}}
+         nexus_url: ${{secrets.NEXUS_URL}}
+         nexus_url_release: ${{secrets.NEXUS_URL_RELEASE}}
+         nexus_url_snapshots: ${{secrets.NEXUS_URL_SNAPSHOTS}}
+         release_token: ${{secrets.RELEASE_TOKEN}}
+         git_mail: ${{secrets.GIT_MAIL}}
+         git_user: ${{secrets.GIT_USER}}
+         release_version: ${{ github.event.inputs.releaseVersion }}
+         next_dev_version: ${{ github.event.inputs.nextDevVersion }}
