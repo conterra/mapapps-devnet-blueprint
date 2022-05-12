@@ -12,6 +12,7 @@
             "templatelayout",
             "template-seasons",
             "theme-autumn",
+            "theme-everlasting",
             "map-init",
             "map-preload-2D",
             "toolset",
@@ -45,7 +46,7 @@
                         "title": "Straßenkarte (grau)",
                         "thumbnailUrl": "resource('${app}:/images/streets.png')",
                         "selected": true,
-                        "basemap": "gray"
+                        "basemap": "gray-vector"
                     },
                     {
                         "id": "esri_hybrid",
@@ -66,6 +67,14 @@
                     },
                     "scale": 140000
                 }
+            }
+        },
+        "themes": {
+            "ThemeModel": {
+                "_selectedTheme": "autumn"
+            },
+            "ThemeSelector": {
+                "componentEnabled": true
             }
         },
         "toc": {
