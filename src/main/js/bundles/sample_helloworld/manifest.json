@@ -9,7 +9,7 @@
     ],
     "icon": {},
     "license": {},
-    "productName": "devnet-mapapps-remote-project-blueprint",
+    "productName": "devnet-mapapps-devnet-blueprint",
     "components": [
         {
             "name": "HelloTool",

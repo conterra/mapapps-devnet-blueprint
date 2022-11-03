@@ -20,7 +20,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
-    <artifactId>mapapps-remote-project-blueprint</artifactId>
+    <artifactId>mapapps-devnet-blueprint</artifactId>
     <version>4.14.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <repositories>
@@ -509,10 +509,10 @@
         </plugins>
     </build>
     <scm>
-        <connection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</connection>
-        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git
+        <connection>scm:git:https://github.com/conterra/mapapps-devnet-blueprint.git</connection>
+        <developerConnection>scm:git:https://github.com/conterra/mapapps-devnet-blueprint.git
         </developerConnection>
-        <url>https://github.com/conterra/mapapps-remote-project-blueprint</url>
+        <url>https://github.com/conterra/mapapps-devnet-blueprint</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>

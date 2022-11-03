@@ -1,10 +1,10 @@
-# mapapps-remote-project-blueprint
+# mapapps-devnet-blueprint
 
 **This project is not intended for use by non-con terra users.** It is designed for the creation of bundles and their releases in GitHub and can access con terra internal infrastructures for this purpose. To develop your own map.apps bundles, use the [mapapps-4-developers project](https://github.com/conterra/mapapps-4-developers).
 
 ## Build
 
-![example workflow](https://github.com/conterra/mapapps-remote-project-blueprint/actions/workflows/devnet-bundle-snapshot.yml/badge.svg)
+![example workflow](https://github.com/conterra/mapapps-devnet-blueprint/actions/workflows/devnet-bundle-snapshot.yml/badge.svg)
 
 ## Requirements
 
