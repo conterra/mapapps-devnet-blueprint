@@ -167,8 +167,8 @@
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>1.12.1</version>
                     <configuration>
-                        <nodeVersion>v16.14.0</nodeVersion>
-                        <npmVersion>8.3.1</npmVersion>
+                        <nodeVersion>v18.13.0</nodeVersion>
+                        <npmVersion>8.19.3</npmVersion>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -352,6 +352,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <executions>
                     <execution>
+                        <?m2e execute?>
                         <id>run gulp ${gulp.task}</id>
                         <goals>
                             <goal>gulp</goal>
@@ -530,7 +531,7 @@
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
-        <mapapps.version>4.14.2</mapapps.version>
+        <mapapps.version>4.14.3</mapapps.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
         <!-- java lib versions -->
