@@ -10,19 +10,19 @@
         {
             "label": "Run HTTP Server",
             "type": "shell",
-            "command": "mvn jetty:run -Denv=dev '-Dlocal.configfile=./build.properties'",
+            "command": "mvn clean jetty:run -Denv=dev '-Dlocal.configfile=./build.properties'",
             "group": "build"
         },
         {
             "label": "Run stand-alone HTTP Server",
             "type": "shell",
-            "command": "mvn jetty:run -Denv=dev '-Dlocal.configfile=./build.properties' -Pinclude-mapapps-deps",
+            "command": "mvn clean jetty:run -Denv=dev '-Dlocal.configfile=./build.properties' -Pinclude-mapapps-deps",
             "group": "build"
         },
         {
             "label": "Compress",
             "type": "shell",
-            "command": "mvn install -P compress",
+            "command": "mvn clean install -P compress",
             "group": "build"
         },
         {
