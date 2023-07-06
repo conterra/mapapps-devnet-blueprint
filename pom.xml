@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-devnet-blueprint</artifactId>
-    <version>4.15.1-SNAPSHOT</version>
+    <version>4.15.0</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -217,7 +217,7 @@
                     <!-- add here properties which are used in plugin configuration resolution -->
                     <properties>
                         <!-- deployment of map.apps installation -->
-                        <mapapps.remote.base>.</mapapps.remote.base>
+                        <mapapps.remote.base>https://demos.conterra.de/mapapps</mapapps.remote.base>
                     </properties>
                 </configuration>
             </plugin>
@@ -518,8 +518,10 @@
         <gulp.node.env>development</gulp.node.env>
 
         <mapapps.user><!-- Set username for map.apps remote installation-->
+            ${demo.user}
         </mapapps.user>
         <mapapps.pw><!-- Set password for map.apps remote installation-->
+            ${demo.user.pw}
         </mapapps.pw>
         <mapapps.token><!-- Set token for map.apps remote installation-->
         </mapapps.token>
@@ -528,7 +530,7 @@
         required -->
         <mapapps.useChunkedRequestEncoding>true</mapapps.useChunkedRequestEncoding>
         <!-- enable this if "upload" profile should only deploy bundles -->
-        <skip.apps.upload>false</skip.apps.upload>
+        <skip.apps.upload>true</skip.apps.upload>
         <!-- enable this if "upload" profile should pre-optimize apps -->
         <triggerPreOptimization>false</triggerPreOptimization>
     </properties>

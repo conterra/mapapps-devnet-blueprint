@@ -19,3 +19,5 @@ jobs:
          nexus_url_release: ${{secrets.NEXUS_URL_RELEASE}}
          nexus_url_snapshots: ${{secrets.NEXUS_URL_SNAPSHOTS}}
          release_token: ${{secrets.RELEASE_TOKEN}}
+         demo_user: ${{secrets.DEMO_USER}}
+         demo_user_pw: ${{secrets.DEMO_USER_PW}}
