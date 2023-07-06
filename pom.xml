@@ -217,7 +217,7 @@
                     <!-- add here properties which are used in plugin configuration resolution -->
                     <properties>
                         <!-- deployment of map.apps installation -->
-                        <mapapps.remote.base>${demo.url}</mapapps.remote.base>
+                        <mapapps.remote.base>.</mapapps.remote.base>
                     </properties>
                 </configuration>
             </plugin>
