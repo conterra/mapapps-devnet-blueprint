@@ -518,10 +518,8 @@
         <gulp.node.env>development</gulp.node.env>
 
         <mapapps.user><!-- Set username for map.apps remote installation-->
-            ${demo.user}
         </mapapps.user>
         <mapapps.pw><!-- Set password for map.apps remote installation-->
-            ${demo.user.pw}
         </mapapps.pw>
         <mapapps.token><!-- Set token for map.apps remote installation-->
         </mapapps.token>
