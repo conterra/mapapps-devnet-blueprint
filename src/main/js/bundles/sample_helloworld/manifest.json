@@ -1,6 +1,6 @@
 {
     "name": "sample_helloworld",
-    "version": "4.16.0",
+    "version": "4.16.1-SNAPSHOT",
     "title": "${bundleName}",
     "description": "${bundleDescription}",
     "vendor": "con terra GmbH",
