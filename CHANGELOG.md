@@ -1,7 +1,17 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [4.16.0] - T.B.D.
+## [4.17.0] - 16.02.2024
+- Support for map.apps 4.17.0
+
+### Changes in pom.xml
+- Update `mapapps.version` property to `4.17.0`
+- Update `ct.jsregistry.version` property to `2.0.1`
+
+### Changes in package.json
+- Update `@conterra/ct-mapapps-typings` to `4.17.0`
+
+## [4.16.0] - 11.01.2024
 
 - Support for map.apps 4.16.0
 - The bundle `sample_camera` is now implemented in Typescript
@@ -19,18 +29,19 @@ All notable changes to this project will be documented in this file.
          <nodeVersion>v20.9.0</nodeVersion>
       </configuration>
   ```
-- Update `maven-compiler-plugin` plugin version to `3.11.0`  
-- Update `maven-javadoc-plugin` plugin version to `3.5.0`  
-- Add version `3.5.0` to `maven-dependency-plugin` plugin  
+- Update `maven-compiler-plugin` plugin version to `3.11.0`
+- Update `maven-javadoc-plugin` plugin version to `3.5.0`
+- Add version `3.5.0` to `maven-dependency-plugin` plugin
 
 ### Changes in package.json
 
 - Update `@conterra/ct-mapapps-typings` to `4.16.0`
 - Update `@types/arcgis-js-api` to `4.28.0`
 - Update `ct-mapapps-gulp-js` property to `0.10.2`
-- Update `ct-mapapps-browser-sync` property to `0.0.34`
+- Update `ct-mapapps-browser-sync` property to `0.0.35`
 - Update `typescript` to `5.2.2`,
 - Update `vue-template-compiler` to `2.7.15`,
+- Add  `vue` with version `2.7.15`,
 - Update `@types/chai` to `4.3.10`
 - Update `chai` to `4.3.10`
 - Update `@types/mocha` to `10.0.4`
@@ -86,7 +97,7 @@ All notable changes to this project will be documented in this file.
 - Use `ct-mapapps-browser-sync` drop use of jetty
 - Update `mapapps.version` property in `./pom.xml` to `4.15.0`
 - Update `@conterra/ct-mapapps-typings` in `package.json` to `4.15.0`
-- Add properties and samples to use Identity Service in dev project in `test/resources/application.properties` 
+- Add properties and samples to use Identity Service in dev project in `test/resources/application.properties`
 - Rename property `proxy.cors.trustedServers` to `cors.request.trustedServers` in `./pom.xml`, `test/resources/application.properties` and `test/webapp/index.html`
 - Update `ct.jsregistry.version` property in `./pom.xml` to `1.5.9`
 - Update `mocha` to `^10.2.0`,
@@ -107,8 +118,8 @@ All notable changes to this project will be documented in this file.
 - Support for map.apps 4.14.3
 - Update `mapapps.version` property in `./pom.xml` to `4.14.3`
 - Update `@conterra/ct-mapapps-typings` in `package.json` to `4.14.3`
-- Update Node.js and npm version in `./pom.xml` to latest LTS Version (18.x) 
-- Add `transpileTargets` property to `gulpfile.js` to streamline transpilation with ArcGIS Maps SDK for JS requirements. 
+- Update Node.js and npm version in `./pom.xml` to latest LTS Version (18.x)
+- Add `transpileTargets` property to `gulpfile.js` to streamline transpilation with ArcGIS Maps SDK for JS requirements.
 - Ignore gulp task on VS Code file change by adding `<?m2e execute?>` to `frontend-maven-plugin` in `./pom.xml`
 
 ## [4.14.2] - 24.01.2023
@@ -138,7 +149,7 @@ All notable changes to this project will be documented in this file.
 - Replace `module.exports` in nls files with `export default`.
   Support for `module.exports` will be removed soon and should be replaced
   with an appropriate `export` or `export default` directive.
-- replaced the old `favicon.ico` with a modern png base `favicon.png`. The file link inside the `ìndex.html` 
+- replaced the old `favicon.ico` with a modern png base `favicon.png`. The file link inside the `ìndex.html`
   was set accordingly
 - `<artifactId>ct-mapapps-js-api</artifactId>` for `<artifactId>ct-mapapps-js</artifactId>` in `./pom.xml`
 
@@ -389,16 +400,16 @@ gulp.task(
 - Replace `$apprt.load` and `$apprt.lauchAppFromParam` by `$apprt.startApp`
   note that the function signature also changed
   instead of:
-  
+
   ```js
     $apprt.load(function(Launcher) {
         new Launcher({
             configLocation: "builderapps"
         }).launchApp("@@appId@@");
   ```
-  
+
   it will be:
-  
+
   ```js
     $apprt.startApp({
         configLocation: "builderapps",
