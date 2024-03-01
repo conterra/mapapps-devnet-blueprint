@@ -420,10 +420,10 @@
                             <goal>deployAppTemplate</goal>
                         </goals>
                         <configuration>
-                            <templateFile>${project.build.directory}/${project.artifactId}-demo-app.zip</templateFile>
+                            <templateFile>${project.build.directory}/${project.artifactId}-sample-app.zip</templateFile>
                             <templateResources>
                                 <templateResource>
-                                    <directory>${js.build.outputPath}/apps/Demo</directory>
+                                    <directory>${js.build.outputPath}/apps/sample</directory>
                                     <includes>
                                         <include>**/*</include>
                                     </includes>
