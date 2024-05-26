@@ -22,7 +22,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-devnet-blueprint</artifactId>
-    <version>4.17.1-SNAPSHOT</version>
+    <version>4.18.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -120,6 +120,8 @@
                         <excludes>
                             <exclude>apps/**</exclude>
                             <exclude>**/tests/**</exclude>
+                            <exclude>**/sample_tests/**</exclude>
+                            <exclude>**/theme-common/**</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -193,6 +195,29 @@
             </testResource>
         </testResources>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>[3.9.0,)</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>[17,)</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>de.conterra.maven</groupId>
                 <artifactId>setproperties-maven-plugin</artifactId>
@@ -488,12 +513,12 @@
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
-        <mapapps.version>4.17.0</mapapps.version>
-        <vuetify.version>1.5.28</vuetify.version>
+        <mapapps.version>4.18.1</mapapps.version>
+        <vuetify.version>1.5.30</vuetify.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
         <!-- java lib versions -->
-        <ct.jsregistry.version>2.0.1</ct.jsregistry.version>
+        <ct.jsregistry.version>2.1.1</ct.jsregistry.version>
         <ct.jsrt-test.version>2.0.2</ct.jsrt-test.version>
 
         <!-- the default app, replaced in the *.html files to switch app names-->
@@ -569,6 +594,11 @@
                 <dependency>
                     <groupId>de.conterra.js</groupId>
                     <artifactId>apprt-polyfill</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>de.conterra.js</groupId>
+                    <artifactId>reactivity</artifactId>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
