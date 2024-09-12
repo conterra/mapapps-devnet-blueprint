@@ -1,8 +1,124 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [4.18.2] - 24.07.2024
+
+- Support for map.apps 4.18.2
+
+### Changes in pom.xml
+
+Introduce use of ct-mapapps-js-bom-* dependencies to reduce the list of manual maintained sub dependencies.
+
+- Update `mapapps.version` property to `4.18.2`
+- Remove all occurrences of `vuetify.version`
+- Remove all occurrences of `ct.jsrt-test.version`
+- Replace `<artifactId>ct-mapapps</artifactId>` in `<dependencyManagement>` by `<artifactId>ct-mapapps-js-bom</artifactId>`
+- Replace all `<dependencies>` by following snippet
+
+  ```xml
+   <dependencies>
+        <!-- include only if old intern test libs are required -->
+        <dependency>
+            <groupId>de.conterra.mapapps</groupId>
+            <artifactId>ct-mapapps-js-bom-dev-test</artifactId>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+  ```
+
+  - Replace profile `include-mapapps-deps` by
+
+  ```xml
+    <profile>
+        <id>include-mapapps-deps</id>
+        <dependencies>
+            <dependency>
+                <groupId>de.conterra.mapapps</groupId>
+                <artifactId>ct-mapapps-js-bom-dev</artifactId>
+                <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </profile>
+  ```
+
+  - add `<stripVersion>true</stripVersion>` to `<configuration>` of `<goal>copy-dependencies</goal>`
+
+### Changes in package.json
+- Update `@conterra/ct-mapapps-typings` to `4.18.2`
+- Update `ct-mapapps-browser-sync` to `0.0.41`
+
+### Changes in tsconfig.json
+- add ArcGIS typings:     `"include": ["src", "node_modules/arcgis-js-api/index.d.ts"]`
+
+## [4.18.1] - 23.05.2024
+
+- Support for map.apps 4.18.1
+
+### Changes in pom.xml
+- Update `mapapps.version` property to `4.18.1`
+- Update `ct.jsregistry.version` property to `2.1.1`
+
+### Changes in package.json
+- Update `@conterra/ct-mapapps-typings` to `4.18.1`
+- Update `"@conterra/reactivity-core": "^0.4.0"`
+
+## [4.18.0] - 17.05.2024
+- Support for map.apps 4.18.0
+- Added reactivity API jar as a dependency (`de.conterra.js.reactivity`)
+
+### Changes in pom.xml
+- Update `mapapps.version` property to `4.18.0`
+- Update `vuetify.version` property to `1.5.30`
+- Update `ct.jsregistry.version` property to `2.1.0`
+- Add the following plugin to the plugins configuration below line 158.
+```xml
+  <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-enforcer-plugin</artifactId>
+      <version>3.4.1</version>
+      <executions>
+          <execution>
+              <id>enforce-versions</id>
+              <goals>
+                  <goal>enforce</goal>
+              </goals>
+              <configuration>
+                  <rules>
+                      <requireMavenVersion>
+                          <version>[3.9.0,)</version>
+                      </requireMavenVersion>
+                      <requireJavaVersion>
+                          <version>[17,)</version>
+                      </requireJavaVersion>
+                  </rules>
+              </configuration>
+          </execution>
+      </executions>
+  </plugin>
+```
+
+### Changes in package.json
+- Update `@conterra/ct-mapapps-typings` to `4.18.0`
+- Update `ct-mapapps-browser-sync` to `0.0.39`
+- Update `ct-mapapps-gulp-js` to `0.10.3`
+- Update `typescript` to `5.4.5`
+- Add `"@conterra/reactivity-core": "^0.3.0"`
+- Replace `"@types/arcgis-js-api": "4.28.0"` with `"arcgis-js-api": "4.29.10"`
+
+### Changes in tsconfig.json
+- Change `moduleResolution` from `node` to `bundler`
+
+### Changes in src/test/webapp/index.html
+- Change `"@@cors.request.trustedServers@@".split("\s*,\s*")` to `"@@cors.request.trustedServers@@".split(/\s*,\s*/)`
+
 ## [4.17.0] - 16.02.2024
 - Support for map.apps 4.17.0
+- Requires Java 17 or later
+- Requires Maven 3.9.0 or later
+
 
 ### Changes in pom.xml
 - Update `mapapps.version` property to `4.17.0`
