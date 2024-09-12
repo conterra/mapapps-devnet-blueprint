@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-devnet-blueprint</artifactId>
-    <version>4.18.2-SNAPSHOT</version>
+    <version>4.18.2</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
