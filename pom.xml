@@ -49,6 +49,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+    <dependency>
+            <groupId>de.conterra.devnet</groupId>
+            <artifactId>mapapps-imprint-privacy</artifactId>
+            <version>${imprintprivacy.version}</version>
+        </dependency>
+    </dependencies>
     <build>
         <pluginManagement>
             <plugins>
@@ -479,6 +486,7 @@
         <mapapps.version>4.18.2</mapapps.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
+        <imprintprivacy.version>1.0.3</imprintprivacy.version>
 
         <!-- java lib versions -->
         <ct.jsregistry.version>2.1.1</ct.jsregistry.version>
