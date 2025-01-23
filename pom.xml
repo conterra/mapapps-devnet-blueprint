@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (C) 2023 con terra GmbH (info@conterra.de)
+    Copyright (C) 2025 con terra GmbH (info@conterra.de)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -150,7 +150,7 @@
                 <plugin>
                     <groupId>de.conterra.maven</groupId>
                     <artifactId>setproperties-maven-plugin</artifactId>
-                    <version>1.0.2</version>
+                    <version>1.0.5</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -324,7 +324,7 @@
                     <properties>
                         <owner>con terra GmbH</owner>
                         <email>info@conterra.de</email>
-                        <project.inceptionYear>2023</project.inceptionYear>
+                        <project.inceptionYear>2025</project.inceptionYear>
                     </properties>
                     <includes>
                         <include>src/main/js/**/*.js</include>
@@ -496,12 +496,12 @@
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
-        <mapapps.version>4.18.3</mapapps.version>
+        <mapapps.version>4.19.0</mapapps.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
 
         <!-- java lib versions -->
-        <ct.jsregistry.version>2.1.3</ct.jsregistry.version>
+        <ct.jsregistry.version>2.1.4</ct.jsregistry.version>
 
         <!-- the default app, replaced in the *.html files to switch app names-->
         <default.app.name>sample</default.app.name>
