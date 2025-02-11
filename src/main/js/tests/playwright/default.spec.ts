@@ -20,7 +20,7 @@ import { MapCanvas } from "./common/map-canvas";
 import { expectToMatchScreenshot } from './common/testUtils';
 
 test('has title', async ({ page }) => {
-    await page.goto('http://localhost:9090/');
+    await page.goto('http://10.1.0.114:9090');
 
     // Expect a title "to contain" a substring.
     await expect(page).toHaveTitle(/sample/);
