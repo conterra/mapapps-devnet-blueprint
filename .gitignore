@@ -13,5 +13,8 @@
 /.settings/
 /.vscode/settings.json
 /.externalToolBuilders/
-/package-lock.json
 /gulpfile.overrides.js
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/src/main/js/tests/playwright/output/*png*
