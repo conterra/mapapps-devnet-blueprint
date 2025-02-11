@@ -37,7 +37,7 @@ export class MapCanvas {
         await this.canvas.dblclick({ position: to });
     }
 
-    async drawRectangle(rectangle: any): Promise<void> {
+    async drawRectangle(rectangle: { left: number, width: number, top: number, height: number }): Promise<void> {
         await this.page.mouse.move(rectangle.left, rectangle.top);
         await this.page.mouse.down();
         await this.page.waitForTimeout(100);
