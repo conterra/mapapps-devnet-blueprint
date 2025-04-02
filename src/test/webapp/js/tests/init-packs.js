@@ -19,6 +19,3 @@ if (require.packs["@vue/test-utils"]) {
 if (require.packs["chai"]) {
     require.packs["chai"].main = "chai";
 }
-if (require.packs["sinon"]) {
-    require.packs["sinon"].main = "pkg/sinon";
-}

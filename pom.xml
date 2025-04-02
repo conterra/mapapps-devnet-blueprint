@@ -203,7 +203,7 @@
             <plugin>
                 <groupId>de.conterra.maven</groupId>
                 <artifactId>setproperties-maven-plugin</artifactId>
-                <version>1.0.5</version>
+                <version>1.0.3</version>
                 <executions>
                     <execution>
                         <goals>
@@ -375,7 +375,8 @@
                             <replacements>
                                 <replacement>
                                     <!-- remove bundleLocations from app.json -->
-                                    <token>\s*"bundleLocations"\s*:\s*\[\s*"localbundles"\s*,\s*"bundles"\s*\]\s*,\s*</token>
+                                    <token>
+                                        \s*"bundleLocations"\s*:\s*\[\s*"localbundles"\s*,\s*"bundles"\s*\]\s*,\s*</token>
                                     <value></value>
                                 </replacement>
                             </replacements>
