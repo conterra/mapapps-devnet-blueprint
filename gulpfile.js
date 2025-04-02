@@ -107,6 +107,7 @@ mapappsBrowserSync.registerTask({
         npmModules: [
             "mocha",
             "chai",
+            "sinon",
             "@conterra/mapapps-mocha-runner"
         ]
     },
@@ -149,7 +150,7 @@ gulp.task("run-tests",
         function transportTestUrls() {
             // transport test url to run-browser-tests
             // eslint-disable-next-line max-len
-            const testsAt = mapappsBrowserSync.state.url + "/resources/jsregistry/root/@conterra/mapapps-mocha-runner/latest/mocha.html?boot=/js/tests/test-init.js&timeout=5000&test=sample_helloworld/tests/all&reporter=tap";
+            const testsAt = mapappsBrowserSync.state.url + "/resources/jsregistry/root/@conterra/mapapps-mocha-runner/latest/mocha.html?boot=/js/tests/test-init.js&timeout=5000&test=sample_tests/all&reporter=tap";
             runBrowserTests.push(testsAt);
             return Promise.resolve();
         },
