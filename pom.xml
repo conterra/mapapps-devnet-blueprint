@@ -24,20 +24,6 @@
     <artifactId>mapapps-devnet-blueprint</artifactId>
     <version>4.19.2-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <repositories>
-        <repository>
-            <id>52n-dependencies</id>
-            <name>52n-dependencies</name>
-            <url>http://52north.org/maven/repo/releases</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>52n-dependencies</id>
-            <name>52n-dependencies</name>
-            <url>http://52north.org/maven/repo/releases</url>
-        </pluginRepository>
-    </pluginRepositories>
     <dependencyManagement>
         <dependencies>
             <!-- dependency versions available -->
@@ -497,12 +483,12 @@
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
-        <mapapps.version>4.19.1</mapapps.version>
+        <mapapps.version>4.19.2</mapapps.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
 
         <!-- java lib versions -->
-        <ct.jsregistry.version>2.1.4</ct.jsregistry.version>
+        <ct.jsregistry.version>2.1.6</ct.jsregistry.version>
 
         <!-- the default app, replaced in the *.html files to switch app names-->
         <default.app.name>sample</default.app.name>
@@ -648,6 +634,9 @@
                         <groupId>de.conterra.jsregistry</groupId>
                         <artifactId>ct-jsregistry-maven-plugin</artifactId>
                         <executions>
+                            <!--
+                            No longer required when the rollup build is in use, because the calculation of the dependencies is done via rollup build.
+                            -->
                             <execution>
                                 <id>calculate js dependencies</id>
                                 <goals>
