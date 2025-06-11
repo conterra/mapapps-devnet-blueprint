@@ -14,4 +14,4 @@
 /.vscode/settings.json
 /.externalToolBuilders/
 /gulpfile.overrides.js
-/test/end-to-end/test/snapshots/local
+src/test/end-to-end/test/snapshots/local

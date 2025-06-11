@@ -533,6 +533,7 @@
         <skip.apps.upload>true</skip.apps.upload>
         <!-- enable this if "upload" profile should pre-optimize apps -->
         <triggerPreOptimization>false</triggerPreOptimization>
+        <client.config.warnOnSlowGraphicsPerformance>true</client.config.warnOnSlowGraphicsPerformance>
     </properties>
     <profiles>
         <profile>
