@@ -14,7 +14,4 @@
 /.vscode/settings.json
 /.externalToolBuilders/
 /gulpfile.overrides.js
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/src/main/js/tests/playwright/output/*png*
+/test/end-to-end/test/snapshots/local
