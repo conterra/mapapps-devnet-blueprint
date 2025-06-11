@@ -3,14 +3,28 @@
     "version": "4.16.1-SNAPSHOT",
     "title": "${bundleName}",
     "description": "${bundleDescription}",
+    "productName": "devnet-mapapps-devnet-blueprint",
     "vendor": "con terra GmbH",
+    "main": "",
     "keywords": [
         "sample"
     ],
-    "icon": {},
-    "license": {},
-    "productName": "devnet-mapapps-devnet-blueprint",
+    "i18n": [
+        "bundle"
+    ],
+    "dependencies": {
+        "ct": "^4.16.0"
+    },
     "components": [
+        {
+            "name": "Hello",
+            "provides": [
+                "sample_helloworld.Hello"
+            ],
+            "properties": {
+                "message": "${hello}"
+            }
+        },
         {
             "name": "HelloTool",
             "impl": "ct/tools/Tool",
@@ -30,15 +44,6 @@
                     "providing": "sample_helloworld.Hello"
                 }
             ]
-        },
-        {
-            "name": "Hello",
-            "provides": [
-                "sample_helloworld.Hello"
-            ],
-            "properties": {
-                "message": "${hello}"
-            }
         }
     ]
 }
