@@ -45,6 +45,12 @@
             <type>pom</type>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>de.conterra.devnet</groupId>
+            <artifactId>mapapps-imprint-privacy</artifactId>
+            <version>1.0.3</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement>
@@ -520,6 +526,7 @@
         <skip.apps.upload>true</skip.apps.upload>
         <!-- enable this if "upload" profile should pre-optimize apps -->
         <triggerPreOptimization>false</triggerPreOptimization>
+        <client.config.warnOnSlowGraphicsPerformance>true</client.config.warnOnSlowGraphicsPerformance>
     </properties>
     <profiles>
         <profile>
