@@ -8,6 +8,7 @@
             "bundles"
         ],
         "allowedBundles": [
+            "agssearch",
             "banner",
             "basemaptoggler",
             "languagetoggler",
@@ -16,24 +17,35 @@
             "map-init",
             "map-preload-2D",
             "mapnavigation",
+            "measurement-2d",
             "notifier",
             "parameter-url",
             "popups-default",
+            "printing",
+            "result-ui",
             "scalebar",
             "search-ui",
+            "selection-ui",
+            "sketching",
             "splashscreen",
             "system",
             "template-seasons",
             "templatelayout",
             "theme-autumn",
             "toc",
-            "toolset"
+            "toolset",
+            "dn_imprintprivacy"
         ],
         "i18n": [
             "bundle"
         ]
     },
     "bundles": {
+        "agssearch": {
+            "AutoStoreRegistration": {
+                "componentEnabled": true
+            }
+        },
         "banner": {
             "BannerWidget": {
                 "label": "Developer Network",
@@ -59,116 +71,31 @@
                     {
                         "id": "gray",
                         "basemap": "gray-vector",
-                        "title": "Straßenkarte (grau)",
+                        "title": "${map.basemaps.gray}",
                         "thumbnailUrl": "resource('${app}:/assets/gray.png')",
                         "selected": true
                     },
                     {
                         "id": "streets",
                         "basemap": "streets-vector",
-                        "title": "Strassen",
+                        "title": "${map.basemaps.streets}",
                         "thumbnailUrl": "resource('${app}:/assets/streets.png')"
                     },
                     {
                         "id": "satellite",
                         "basemap": "satellite",
-                        "title": "Satellit",
+                        "title": "${map.basemaps.topo}",
                         "thumbnailUrl": "resource('${app}:/assets/topo.png')"
                     },
                     {
                         "id": "hybrid",
                         "basemap": "hybrid",
-                        "title": "Hybrid",
+                        "title": "${map.basemaps.hybrid}",
                         "thumbnailUrl": "resource('${app}:/assets/hybrid.png')"
                     }
                 ],
                 "map": {
                     "layers": [
-                        {
-                            "id": "koeln3",
-                            "title": "${map.koeln3.title}",
-                            "type": "GROUP",
-                            "visible": true,
-                            "layers": [
-                                {
-                                    "title": "${map.koeln3.sights.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/4",
-                                    "type": "AGS_FEATURE",
-                                    "popupTemplate": {
-                                        "title": "${map.koeln3.sights.titleSingle}",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln3.sights.text}"
-                                            },
-                                            {
-                                                "type": "fields",
-                                                "fieldInfos": [
-                                                    {
-                                                        "fieldName": "ADRESSE",
-                                                        "label": "${common.address}"
-                                                    },
-                                                    {
-                                                        "fieldName": "STADTBEZIRK",
-                                                        "label": "${common.precint}"
-                                                    },
-                                                    {
-                                                        "fieldName": "HYPERLINK",
-                                                        "label": "${common.furtherinfo}"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "title": "${map.koeln3.playgrounds.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/5",
-                                    "type": "AGS_FEATURE",
-                                    "visible": false,
-                                    "popupTemplate": {
-                                        "title": "{Typ}",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln3.playgrounds.text}"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "title": "${map.koeln3.places.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/9",
-                                    "type": "AGS_FEATURE",
-                                    "popupTemplate": {
-                                        "title": "${map.koeln3.places.titleSingle}",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln3.places.text}"
-                                            },
-                                            {
-                                                "type": "fields",
-                                                "fieldInfos": [
-                                                    {
-                                                        "fieldName": "ADRESSE",
-                                                        "label": "${common.address}"
-                                                    },
-                                                    {
-                                                        "fieldName": "STADTVIERT",
-                                                        "label": "${common.district}"
-                                                    },
-                                                    {
-                                                        "fieldName": "HYPERLINK",
-                                                        "label": "${common.furtherinfo}"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
                         {
                             "id": "koeln1",
                             "title": "${map.koeln1.title}",
@@ -387,6 +314,91 @@
                                     }
                                 }
                             ]
+                        },
+                        {
+                            "id": "koeln3",
+                            "title": "${map.koeln3.title}",
+                            "type": "GROUP",
+                            "visible": true,
+                            "layers": [
+                                {
+                                    "title": "${map.koeln3.sights.title}",
+                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/4",
+                                    "type": "AGS_FEATURE",
+                                    "popupTemplate": {
+                                        "title": "${map.koeln3.sights.titleSingle}",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "${map.koeln3.sights.text}"
+                                            },
+                                            {
+                                                "type": "fields",
+                                                "fieldInfos": [
+                                                    {
+                                                        "fieldName": "ADRESSE",
+                                                        "label": "${common.address}"
+                                                    },
+                                                    {
+                                                        "fieldName": "STADTBEZIRK",
+                                                        "label": "${common.precint}"
+                                                    },
+                                                    {
+                                                        "fieldName": "HYPERLINK",
+                                                        "label": "${common.furtherinfo}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "title": "${map.koeln3.playgrounds.title}",
+                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/5",
+                                    "type": "AGS_FEATURE",
+                                    "visible": false,
+                                    "popupTemplate": {
+                                        "title": "{Typ}",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "${map.koeln3.playgrounds.text}"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "title": "${map.koeln3.places.title}",
+                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/9",
+                                    "type": "AGS_FEATURE",
+                                    "popupTemplate": {
+                                        "title": "${map.koeln3.places.titleSingle}",
+                                        "content": [
+                                            {
+                                                "type": "text",
+                                                "text": "${map.koeln3.places.text}"
+                                            },
+                                            {
+                                                "type": "fields",
+                                                "fieldInfos": [
+                                                    {
+                                                        "fieldName": "ADRESSE",
+                                                        "label": "${common.address}"
+                                                    },
+                                                    {
+                                                        "fieldName": "STADTVIERT",
+                                                        "label": "${common.district}"
+                                                    },
+                                                    {
+                                                        "fieldName": "HYPERLINK",
+                                                        "label": "${common.furtherinfo}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
                         }
                     ]
                 },
@@ -435,15 +447,13 @@
                     },
                     {
                         "id": "drawer_left",
-                        "title": "Werkzeuge",
+                        "title": "${tools.drawerLeft}",
                         "cssClass": "ct-main-app-menu",
                         "tools": [
-                            "tocToggleTool",
-                            "printingToggleTool",
-                            "sharelinkTool",
-                            "helloTool",
-                            "IMPRINT_Imprint_CustomInfoTool",
-                            "IMPRINT_Imprint_CustomInfoTool_mobile"
+                            "selection-ui-tool",
+                            "sketchToggleTool",
+                            "measuring_tools",
+                            "printingToggleTool"
                         ],
                         "registerWidget": {
                             "widgetRole": "drawer_button"
@@ -456,8 +466,60 @@
                             "below",
                             "before"
                         ]
+                    },
+                    {
+                        "id": "measuring_tools",
+                        "title": "${tools.measuring}",
+                        "iconClass": "icon-editor-table",
+                        "tools": [
+                            "distanceMeasurement2DToggleTool",
+                            "areaMeasurement2DToggleTool"
+                        ],
+                        "container": "ignore",
+                        "registerTool": true,
+                        "windowType": "menuitem",
+                        "tooltipPositions": [
+                            "after"
+                        ]
                     }
                 ]
+            }
+        },
+        "dn_imprintprivacy": {
+            "ToolHandler": {
+                "imprintUrls": [
+                    {
+                        "locale": "de",
+                        "url": "https://www.conterra.de/impressum"
+                    },
+                    {
+                        "locale": "en",
+                        "url": "https://www.con-terra.com/imprint"
+                    }
+                ],
+                "privacyUrls": [
+                    {
+                        "locale": "de",
+                        "url": "https://www.conterra.de/datenschutzhinweise"
+                    },
+                    {
+                        "locale": "en",
+                        "url": "https://www.con-terra.com/privacy-statements"
+                    }
+                ],
+                "toolsetDefinition": {
+                    "id": "imprintprivacyToolset",
+                    "tools": [
+                        "imprintTool",
+                        "privacyStatementsTool"
+                    ],
+                    "registerWidget": {
+                        "widgetRole": "footer_right"
+                    },
+                    "container": "ignore",
+                    "windowType": "container",
+                    "cssClass": "showToolLabels"
+                }
             }
         }
     }
