@@ -13,5 +13,6 @@
 /.settings/
 /.vscode/settings.json
 /.externalToolBuilders/
+/package-lock.json
 /gulpfile.overrides.js
 src/test/end-to-end/test/snapshots/local
