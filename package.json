@@ -6,7 +6,10 @@
     "scripts": {
         "check-licenses": "tsx ./src/support/js/check-licenses.ts",
         "check-types": "tsc --noEmit",
-        "watch-types": "tsc -w --noEmit"
+        "watch-types": "tsc -w --noEmit",
+        "e2e-test": "npx playwright test",
+        "e2e-test:headed": "npx playwright test --headed",
+        "e2e-test:ui": "npx playwright test --ui"
     },
     "dependencies": {
         "arcgis-js-api": "4.31.6",
@@ -20,6 +23,7 @@
         "@types/chai": "4.3.20",
         "@types/license-checker": "^25.0.6",
         "@types/mocha": "10.0.10",
+        "@types/node": "^22.15.17",
         "@types/sinon": "^17.0.3",
         "chai": "4.5.0",
         "ct-mapapps-browser-sync": "0.0.45",
