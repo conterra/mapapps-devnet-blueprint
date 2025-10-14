@@ -1,73 +1,34 @@
 name: devnet-replicate-change
 
+
 on:
   push:
     branches:
-      - main  # template repo main branch
-  workflow_dispatch:
+      - main  # Trigger on pushes to template repo main branch
+  workflow_dispatch:  # Also allow manual trigger
 
 env:
-  SOURCE_REPOSITORY: conterra/mapapps-devnet-blueprint # template repo full name
-  SOURCE_BRANCH: main
+  SOURCE_REPOSITORY: conterra/mapapps-devnet-blueprint  # Replace with your template repo full name
   TARGET_REPOS: |
-    conterra/mapapps-weather-visualization
-  GIT_BOT_NAME: 'GitHub Actions Bot'
-  GIT_BOT_EMAIL: 'actions@github.com'
+    conterra/mapapps-bookmarks
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
-      - name: Checkout Template Repo
+      - name: Checkout the template repository
         uses: actions/checkout@v4
+
+      - name: Sync to target repositories and create PRs
+        uses: AndreasAugustin/actions-template-sync@v2
         with:
-          repository: ${{ env.SOURCE_REPOSITORY }}
-          ref: ${{ env.SOURCE_BRANCH }}
-          token: ${{secrets.TECHNICAL_USER_RELEASE_TOKEN}}
-
-      - name: Sync changes and create PRs
-        env:
-          PAT: ${{secrets.TECHNICAL_USER_RELEASE_TOKEN}}
-        run: |
-          while read -r target_repo; do
-            echo "Processing $target_repo"
-            repo_name=$(basename "$target_repo")
-            git clone "https://x-access-token:${PAT}@github.com/$target_repo.git"
-            cd "$repo_name" || exit 1
-
-            # Copy changes from template repo (assumed checked out in ../)
-            rsync -av --delete --exclude='.git' ../ "$repo_name/"
-
-            # Example placeholder replacement:
-            grep -rl '__TARGET_REPO_NAME__' . | xargs sed -i "s/__TARGET_REPO_NAME__/$repo_name/g"
-
-            # Configure git user
-            git config user.name "$GIT_BOT_NAME"
-            git config user.email "$GIT_BOT_EMAIL"
-
-            # Create a new branch for the update
-            BRANCH="template-sync-$(date +%Y%m%d%H%M%S)"
-            git checkout -b "$BRANCH"
-
-            # Add and commit changes
-            git add .
-            if git diff --cached --quiet; then
-              echo "No changes to commit for $repo_name"
-              cd ..
-              rm -rf "$repo_name"
-              continue
-            fi
-            git commit -m "[Template Sync] Update from template repo"
-
-            # Push branch
-            git push origin "$BRANCH"
-
-            # Create pull request using GitHub CLI (gh)
-            gh auth login --with-token < "$PAT"
-            gh pr create --title "[Template Sync] Update from template repo" \
-                         --body "This PR synchronizes changes from the template repository." \
-                         --head "$BRANCH" --base main --repo "$target_repo"
-
-            cd ..
-            rm -rf "$repo_name"
-          done <<< "${TARGET_REPOS}"
+          github_token: ${{secrets.TECHNICAL_USER_RELEASE_TOKEN}}
+          source_repo_path: ${{ env.SOURCE_REPOSITORY }}
+          upstream_branch: main
+          pr_title: "[Template Sync] Update from template repo"
+          pr_commit_msg: "chore(template): sync changes from template repo"
+          pr_labels: "template_sync"
