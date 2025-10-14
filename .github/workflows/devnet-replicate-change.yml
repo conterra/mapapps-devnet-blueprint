@@ -1,6 +1,5 @@
 name: devnet-replicate-change
 
-
 on:
   push:
     branches:
