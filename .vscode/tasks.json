@@ -54,7 +54,7 @@
         },
         {
             "label": "Init playwright tests",
-            "details": "Initialize playwright tests for this bundle",
+            "detail": "Initialize playwright tests for this bundle",
             "type": "npm",
             "script": "npm init playwright@latest",
             "group": "build"
