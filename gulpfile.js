@@ -16,6 +16,10 @@
 const gulp = require("gulp");
 const mapapps = require('ct-mapapps-gulp-js');
 const mapappsBrowserSync = require("ct-mapapps-browser-sync");
+const dotEnv = require("dotenv");
+// load .env file if it exits
+// the local dev jsregistry will lookup any @@key.property@@ expression, also as environment variable with name "KEY_PROPERTY" for replacement.
+dotEnv.config();
 
 const isProduction = process.env.NODE_ENV === "production";
 console.info(`Configuring gulp build for ${isProduction ? "production" : "development"}`);
@@ -107,6 +111,7 @@ mapappsBrowserSync.registerTask({
         npmModules: [
             "mocha",
             "chai",
+            "sinon",
             "@conterra/mapapps-mocha-runner"
         ]
     },
@@ -149,7 +154,7 @@ gulp.task("run-tests",
         function transportTestUrls() {
             // transport test url to run-browser-tests
             // eslint-disable-next-line max-len
-            const testsAt = mapappsBrowserSync.state.url + "/resources/jsregistry/root/@conterra/mapapps-mocha-runner/latest/mocha.html?boot=/js/tests/test-init.js&timeout=5000&test=sample_helloworld/tests/all&reporter=tap";
+            const testsAt = mapappsBrowserSync.state.url + "/resources/jsregistry/root/@conterra/mapapps-mocha-runner/latest/mocha.html?boot=/js/tests/test-init.js&timeout=5000&test=sample_tests/all&reporter=tap";
             runBrowserTests.push(testsAt);
             return Promise.resolve();
         },

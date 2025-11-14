@@ -14,6 +14,7 @@ For detailed documentation on how to use map.apps for Developers to extend map.a
 
 - Java >= 17
 - Maven >= 3.9.0
+- pnpm >= 10.20
 
 ## Quick start
 
@@ -31,5 +32,7 @@ $ mvn compile -Denv=dev -Pinclude-mapapps-deps
 # run unit tests
 $ mvn test -P run-js-tests,include-mapapps-deps
 ```
+
+To execute the tests in your browser, open <http://localhost:9090/js/tests/runTests.html> (may be on a different port depending on your configuration).
 
 For more details refer to the [Developer's Guide](https://docs.conterra.de/en/mapapps/latest/developersguide/getting-started/).

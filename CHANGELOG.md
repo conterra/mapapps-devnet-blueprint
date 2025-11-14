@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.20.0] - TBD
+
+- Migrate to the package manager [PNPM](https://pnpm.io/) (previously: NPM).
+  PNPM supports additional settings like `onlyBuiltDependencies` that reduce attack vectors from the supply chain.
+  It also offers improved performance.
+- PNPM's lockfile `pnpm-lock.yaml` is now part of the repository and no longer ignored by `.gitignore`.
+  - We recommend the use of `pnpm-lock.yaml` to ensure your build environment is using stable dependencies.
+- Add dotenv to support local `.env` files for property replacement.
+  - The `gulpfile.js` was updated to load environment variables from a `.env` file if present.
+
+### Changes in pom.xml
+- Update `mapapps.version` property to `4.20.0`
+- Update `ct.jsregistry.version` property to `2.1.9`
+- Update `frontend-maven-plugin` plugin version to `1.15.4`
+
+### Changes in package.json
+- In the dependencies section, change `"arcgis-js-api": "4.31.6"` to `"@arcgis/core": "4.33.14"`
+- In the devDependencies section, change `@conterra/ct-mapapps-typings` to `4.20.0`
+- In the devDependencies section, change `ct-mapapps-gulp-js` to `0.10.15`
+- In the devDependencies section, change `ct-mapapps-browser-sync` to `0.0.47`
+- In the devDependencies section, change `@conterra/reactivity-core` to `0.8.0`
+- In the devDependencies section, change `@types/node` to `^22.18.1`
+- In the devDependencies section, change `mocha` to `11.7.4`
+- In the devDependencies section, change `puppeteer` to `24.25.0`
+- In the devDependencies section, change `tsx` to `^4.20.5`
+- In the devDependencies section, change `typescript` to `5.9.2`
+- In the devDependencies section add `dojo-typings` to `1.11.11`
+- In the devDependencies section add `eslint` to `8.57.1`
+- In the devDependencies section add `dotenv` to `17.2.3`
+
+### Changes in check-licenses.ts
+- Change `arcgis-js-api@4.31.6` to `@arcgis/core@4.33.14`
+
+### Changes in the src/ Folder
+- See [Migration Guide](./MIGRATION.md#4200---TBD)
+
+
 ## [4.19.3] - 11.07.2025
 
 ### Changes in pom.xml
@@ -170,7 +207,7 @@ Introduce use of ct-mapapps-js-bom-* dependencies to reduce the list of manual m
 - Update `vuetify.version` property to `1.5.30`
 - Update `ct.jsregistry.version` property to `2.1.0`
 - Add the following plugin to the plugins configuration below line 158.
-```xml
+```xml 
   <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-enforcer-plugin</artifactId>
@@ -241,9 +278,9 @@ Introduce use of ct-mapapps-js-bom-* dependencies to reduce the list of manual m
          <nodeVersion>v20.9.0</nodeVersion>
       </configuration>
   ```
-- Update `maven-compiler-plugin` plugin version to `3.11.0`
-- Update `maven-javadoc-plugin` plugin version to `3.5.0`
-- Add version `3.5.0` to `maven-dependency-plugin` plugin
+- Update `maven-compiler-plugin` plugin version to `3.11.0`  
+- Update `maven-javadoc-plugin` plugin version to `3.5.0`  
+- Add version `3.5.0` to `maven-dependency-plugin` plugin  
 
 ### Changes in package.json
 
@@ -309,7 +346,7 @@ Introduce use of ct-mapapps-js-bom-* dependencies to reduce the list of manual m
 - Use `ct-mapapps-browser-sync` drop use of jetty
 - Update `mapapps.version` property in `./pom.xml` to `4.15.0`
 - Update `@conterra/ct-mapapps-typings` in `package.json` to `4.15.0`
-- Add properties and samples to use Identity Service in dev project in `test/resources/application.properties`
+- Add properties and samples to use Identity Service in dev project in `test/resources/application.properties` 
 - Rename property `proxy.cors.trustedServers` to `cors.request.trustedServers` in `./pom.xml`, `test/resources/application.properties` and `test/webapp/index.html`
 - Update `ct.jsregistry.version` property in `./pom.xml` to `1.5.9`
 - Update `mocha` to `^10.2.0`,
@@ -330,8 +367,8 @@ Introduce use of ct-mapapps-js-bom-* dependencies to reduce the list of manual m
 - Support for map.apps 4.14.3
 - Update `mapapps.version` property in `./pom.xml` to `4.14.3`
 - Update `@conterra/ct-mapapps-typings` in `package.json` to `4.14.3`
-- Update Node.js and npm version in `./pom.xml` to latest LTS Version (18.x)
-- Add `transpileTargets` property to `gulpfile.js` to streamline transpilation with ArcGIS Maps SDK for JS requirements.
+- Update Node.js and npm version in `./pom.xml` to latest LTS Version (18.x) 
+- Add `transpileTargets` property to `gulpfile.js` to streamline transpilation with ArcGIS Maps SDK for JS requirements. 
 - Ignore gulp task on VS Code file change by adding `<?m2e execute?>` to `frontend-maven-plugin` in `./pom.xml`
 
 ## [4.14.2] - 24.01.2023
@@ -612,16 +649,16 @@ gulp.task(
 - Replace `$apprt.load` and `$apprt.lauchAppFromParam` by `$apprt.startApp`
   note that the function signature also changed
   instead of:
-
+  
   ```js
     $apprt.load(function(Launcher) {
         new Launcher({
             configLocation: "builderapps"
         }).launchApp("@@appId@@");
   ```
-
+  
   it will be:
-
+  
   ```js
     $apprt.startApp({
         configLocation: "builderapps",
