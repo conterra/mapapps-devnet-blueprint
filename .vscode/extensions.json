@@ -2,7 +2,7 @@
     "recommendations": [
         "dbaeumer.vscode-eslint",
         "vue.volar",
-        "Esri.arcgis-jsapi-snippets",
+        "esri.arcgis-maps-sdk-js-snippets",
         "ctjdr.vscode-apprt-bundles"
     ]
 }
