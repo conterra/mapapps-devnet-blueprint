@@ -1,8 +1,8 @@
 {
-    "name": "mapapps-4-developers",
+    "name": "mapapps-devnet-blueprint",
     "description": "test build",
     "version": "0.0.1",
-    "license": "CC0-1.0",
+    "license": "Apache-2.0",
     "scripts": {
       "check-licenses": "tsx ./src/support/js/check-licenses.ts",
       "check-types": "tsc --noEmit",
