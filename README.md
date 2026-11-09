@@ -13,7 +13,7 @@ For detailed documentation on how to use map.apps for Developers to extend map.a
 
 - Java >= 17
 - Maven >= 3.8.0
-- pnpm >= 10.18.3
+- pnpm >= 11.8.0
 
 ## Quick start
 
