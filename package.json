@@ -1,7 +1,7 @@
 {
     "name": "mapapps-devnet-blueprint",
-    "description": "test build",
-    "version": "0.0.1",
+    "version": "4.20.5-SNAPSHOT",
+    "private": true,
     "license": "Apache-2.0",
     "scripts": {
       "check-licenses": "tsx ./src/support/js/check-licenses.ts",
@@ -11,7 +11,7 @@
       "e2e-test:headed": "playwright test --headed",
       "e2e-test:ui": "playwright test --ui"
     },
-    "dependencies": {
+    "peerDependencies": {
         "@arcgis/core": "4.33.14",
         "vue": "2.7.16"
     },
@@ -46,5 +46,5 @@
         "vite": "7.3.5",
         "vue-template-compiler": "2.7.16"
     },
-    "packageManager": "pnpm@11.8.0"
+    "packageManager": "pnpm@11.28.9"
 }
