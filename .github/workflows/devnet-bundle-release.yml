@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-     - uses: conterra/devnet-bundle-release-action@feature/sbom
+     - uses: conterra/devnet-bundle-release-action@main
        with:
          nexus_id: ${{secrets.NEXUS_ID}}
          nexus_user: ${{secrets.NEXUS_USER}}
