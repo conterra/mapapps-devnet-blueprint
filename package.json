@@ -1,6 +1,6 @@
 {
     "name": "mapapps-devnet-blueprint",
-    "version": "4.20.5-SNAPSHOT",
+    "version": "4.20.4",
     "private": true,
     "license": "Apache-2.0",
     "scripts": {
